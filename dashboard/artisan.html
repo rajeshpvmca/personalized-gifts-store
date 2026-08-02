@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artisan Dashboard</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <style>
+        body {
+            background-color: var(--background);
+            padding: 1.5rem;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .page-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .page-title .material-symbols-outlined { color: #dfb162; font-size: 2rem; }
+
+        /* Supercharged Store Banner */
+        .store-banner {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            color: #ffffff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .store-banner::after {
+            content: '';
+            position: absolute;
+            top: -50%; right: -10%;
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(223,177,98,0.15) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+        }
+
+        .store-avatar {
+            width: 100px; height: 100px;
+            background: #ffffff;
+            border: 4px solid #dfb162;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1a1a1a;
+            font-size: 2.5rem;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(223, 177, 98, 0.3);
+        }
+
+        .artisan-level-badge {
+            background: rgba(223, 177, 98, 0.2);
+            border: 1px solid #dfb162;
+            color: #dfb162;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .level-progress-container { flex-grow: 1; min-width: 250px; background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2); z-index: 2; display: flex; flex-direction: column; justify-content: center; }
+        .level-header { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.85rem; font-weight: 600; color: rgba(255,255,255,0.8); }
+        .level-bar { height: 8px; background: rgba(255,255,255,0.2); border-radius: 4px; overflow: hidden; }
+        .level-fill { height: 100%; background: #dfb162; border-radius: 4px; width: 75%; }
+
+        /* Dash Card */
+        .dash-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            border: 1px solid #f0e6d8;
+            height: 100%;
+        }
+
+        .card-header-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #c18a39;
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Stat Cards */
+        .stat-card-gold {
+            background: linear-gradient(135deg, #dfb162 0%, #c18a39 100%);
+            color: #ffffff;
+            padding: 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(193, 138, 57, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+            transition: transform 0.3s;
+        }
+        
+        .stat-card-gold:hover { transform: translateY(-3px); }
+        .stat-card-gold h3 { font-family: 'Montserrat', sans-serif; font-size: 2.5rem; font-weight: 700; margin: 10px 0; }
+        .stat-card-gold p { margin: 0; font-weight: 500; opacity: 0.9; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; }
+        
+        .stat-card-light {
+            background: #fdfdfd;
+            border: 1px solid #f0e6d8;
+            color: #1a1a1a;
+            padding: 1.5rem;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+            transition: transform 0.3s;
+        }
+        
+        .stat-card-light:hover { transform: translateY(-3px); border-color: #dfb162; box-shadow: 0 8px 25px rgba(223,177,98,0.1); }
+        .stat-card-light h3 { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 700; margin: 10px 0; color: #c18a39; }
+        .stat-card-light p { margin: 0; font-weight: 600; color: #8c837b; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* Action Center List */
+        .todo-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background: #fafafa;
+            border: 1px solid #e0d8d0;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            transition: all 0.2s;
+        }
+        
+        .todo-item:hover { background: #fff; border-color: #dfb162; box-shadow: 0 4px 15px rgba(223, 177, 98, 0.1); }
+        
+        .todo-icon {
+            width: 45px; height: 45px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin-right: 15px; flex-shrink: 0;
+        }
+        
+        .bg-urgent { background: rgba(220, 53, 69, 0.1); color: #dc3545; }
+        .bg-warning-soft { background: rgba(223, 177, 98, 0.15); color: #c18a39; }
+
+        .todo-content h6 { margin: 0 0 3px 0; font-weight: 700; color: #1a1a1a; }
+        .todo-content p { margin: 0; font-size: 0.85rem; color: #8c837b; }
+        
+        .btn-action {
+            background: transparent; border: 1px solid #d1c8c0;
+            color: #4a4a4a; font-size: 0.8rem; font-weight: 600;
+            padding: 5px 15px; border-radius: 20px;
+            margin-left: auto; transition: all 0.2s; white-space: nowrap;
+        }
+        .btn-action:hover { background: #dfb162; color: #fff; border-color: #dfb162; }
+
+        /* Top Sellers List */
+        .seller-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border-bottom: 1px solid #f0e6d8;
+        }
+        
+        .seller-item:last-child { border-bottom: none; padding-bottom: 0; }
+        
+        .seller-thumb { width: 50px; height: 50px; background: #f0e6d8; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #c18a39; margin-right: 15px; flex-shrink: 0; }
+        .seller-info h6 { margin: 0 0 2px 0; font-weight: 700; color: #1a1a1a; font-size: 0.95rem; }
+        .seller-info p { margin: 0; font-size: 0.8rem; color: #8c837b; }
+        .seller-stats { margin-left: auto; text-align: right; }
+        .seller-stats h6 { margin: 0; font-weight: 700; color: #198754; font-size: 1rem; }
+        .seller-stats p { margin: 0; font-size: 0.75rem; color: #8c837b; }
+
+        /* Store Health */
+        .health-score {
+            display: flex; align-items: center; justify-content: space-between;
+            background: #fdfdfd; border: 1px solid #f0e6d8;
+            padding: 1rem; border-radius: 12px; margin-bottom: 10px;
+        }
+        .health-score h4 { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 700; margin: 0; color: #198754; }
+        .health-score p { margin: 0; font-size: 0.85rem; font-weight: 600; color: #4a4a4a; }
+        .health-progress { height: 6px; background: #e0d8d0; border-radius: 3px; margin-top: 8px; width: 100px; }
+        .health-progress-bar { height: 100%; background: #198754; border-radius: 3px; }
+
+        /* Recent Reviews Feed */
+        .review-feed-item {
+            background: #fafafa;
+            border: 1px dashed #d1c8c0;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        .rating-stars { display: flex; gap: 2px; color: #dfb162; margin-bottom: 5px; }
+        .rating-stars .material-symbols-outlined { font-size: 1rem; font-variation-settings: 'FILL' 1; }
+        .review-feed-item p { margin: 0; font-size: 0.85rem; color: #4a4a4a; font-style: italic; }
+        .review-feed-item span { font-size: 0.75rem; color: #8c837b; font-weight: 600; display: block; margin-top: 5px; }
+
+        /* Promo Block */
+        .promo-block {
+            background: linear-gradient(135deg, rgba(223, 177, 98, 0.1) 0%, rgba(193, 138, 57, 0.2) 100%);
+            border: 1px solid #dfb162;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .promo-block h6 { font-weight: 700; color: #c18a39; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; }
+        .promo-block p { font-size: 0.85rem; color: #4a4a4a; margin-bottom: 15px; }
+        .btn-gold {
+            background: linear-gradient(135deg, #dfb162 0%, #c18a39 100%); color: #ffffff; border: none; font-weight: 600; padding: 8px 20px; border-radius: 30px; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 5px;
+        }
+        .btn-gold:hover { box-shadow: 0 4px 15px rgba(193, 138, 57, 0.4); color: #ffffff; transform: translateY(-2px); }
+
+        @media (max-width: 992px) {
+            .store-banner { flex-direction: column; text-align: center; justify-content: center; }
+            .level-progress-container { width: 100%; }
+        }
+
+        @media (max-width: 576px) {
+            body { padding: 1rem; }
+            .store-banner { padding: 1.5rem; }
+            .store-avatar { width: 80px; height: 80px; font-size: 2rem; margin: 0 auto; }
+            .todo-item { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .btn-action { margin-left: 0; width: 100%; text-align: center; }
+            .health-score { flex-direction: column; align-items: flex-start; gap: 5px; }
+            .health-progress { width: 100%; }
+            .stat-card-gold h3, .stat-card-light h3 { font-size: 2rem; }
+            .seller-item { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .seller-stats { margin-left: 0; text-align: left; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid px-0">
+        <h2 class="page-title"><span class="material-symbols-outlined">store</span> Artisan Workspace</h2>
+
+        <!-- Supercharged Top Banner -->
+        <div class="store-banner">
+            <div class="d-flex align-items-center gap-4 flex-column flex-sm-row" style="z-index: 2;">
+                <div class="store-avatar">LC</div>
+                <div class="text-center text-sm-start">
+                    <div class="artisan-level-badge"><span class="material-symbols-outlined" style="font-size: 1.1rem; font-variation-settings: 'FILL' 1;">workspace_premium</span> Elite Artisan</div>
+                    <h3 class="font-heading fw-bold mb-1">LeatherCraft Studios</h3>
+                    <div class="d-flex align-items-center justify-content-center justify-content-sm-start gap-2 opacity-75">
+                        <span class="material-symbols-outlined" style="font-size: 1.2rem; color: #dfb162; font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="fw-medium">4.9 Rating (128 Reviews) • Member since 2024</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="level-progress-container">
+                <div class="level-header">
+                    <span>Level 4 Progress</span>
+                    <span>1,540 / 2,000 XP (Sales)</span>
+                </div>
+                <div class="level-bar">
+                    <div class="level-fill"></div>
+                </div>
+                <div class="mt-2 text-end" style="font-size: 0.75rem; color: rgba(255,255,255,0.7); font-weight: 500;">
+                    460 XP to Master Tier (Unlocks lower platform fees!)
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Metrics -->
+        <div class="row g-3 mb-3">
+            <div class="col-12 col-sm-6 col-xl-3">
+                <div class="stat-card-gold">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <span class="material-symbols-outlined">payments</span>
+                        <span class="badge bg-white text-dark rounded-pill">+12%</span>
+                    </div>
+                    <h3>$4,250</h3>
+                    <p>Monthly Revenue</p>
+                </div>
+            </div>
+            
+            <div class="col-12 col-sm-6 col-xl-3">
+                <div class="stat-card-light">
+                    <span class="material-symbols-outlined">pending_actions</span>
+                    <h3>12</h3>
+                    <p>Pending Orders</p>
+                </div>
+            </div>
+            
+            <div class="col-12 col-sm-6 col-xl-3">
+                <div class="stat-card-light">
+                    <span class="material-symbols-outlined">inventory_2</span>
+                    <h3>45</h3>
+                    <p>Active Listings</p>
+                </div>
+            </div>
+            
+            <div class="col-12 col-sm-6 col-xl-3">
+                <div class="stat-card-light">
+                    <span class="material-symbols-outlined">forum</span>
+                    <h3>3</h3>
+                    <p>Unread Messages</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3">
+            <!-- Left Column: Action Center & Top Sellers -->
+            <div class="col-12 col-xl-7 d-flex flex-column gap-3">
+                
+                <div class="dash-card" style="height: auto;">
+                    <div class="card-header-title">
+                        Urgent Actions
+                        <span class="badge" style="background: rgba(223, 177, 98, 0.2); color: #c18a39;">2 Tasks</span>
+                    </div>
+                    
+                    <div class="todo-item">
+                        <div class="todo-icon bg-urgent"><span class="material-symbols-outlined">local_shipping</span></div>
+                        <div class="todo-content">
+                            <h6>Overdue Shipments</h6>
+                            <p>You have 2 custom wallets that need to be shipped today to meet deadlines.</p>
+                        </div>
+                        <button class="btn-action">Print Labels</button>
+                    </div>
+                    
+                    <div class="todo-item mb-0">
+                        <div class="todo-icon bg-warning-soft"><span class="material-symbols-outlined">draw</span></div>
+                        <div class="todo-content">
+                            <h6>Custom Quotes Pending</h6>
+                            <p>A new customer is requesting a custom engraving quote.</p>
+                        </div>
+                        <button class="btn-action">Review Quote</button>
+                    </div>
+                </div>
+
+                <div class="dash-card" style="height: auto;">
+                    <div class="card-header-title">Top Selling Items (This Month)</div>
+                    
+                    <div class="seller-item">
+                        <div class="seller-thumb"><span class="material-symbols-outlined">wallet</span></div>
+                        <div class="seller-info">
+                            <h6>Engraved Leather Wallet</h6>
+                            <p>SKU: LWT-001 • $65.00</p>
+                        </div>
+                        <div class="seller-stats">
+                            <h6>42 Sold</h6>
+                            <p>+$2,730 Revenue</p>
+                        </div>
+                    </div>
+                    
+                    <div class="seller-item">
+                        <div class="seller-thumb"><span class="material-symbols-outlined">checkroom</span></div>
+                        <div class="seller-info">
+                            <h6>Custom Embossed Jacket</h6>
+                            <p>SKU: JKT-042 • $350.00</p>
+                        </div>
+                        <div class="seller-stats">
+                            <h6>3 Sold</h6>
+                            <p>+$1,050 Revenue</p>
+                        </div>
+                    </div>
+                    
+                    <div class="seller-item">
+                        <div class="seller-thumb"><span class="material-symbols-outlined">watch</span></div>
+                        <div class="seller-info">
+                            <h6>Vintage Watch Strap</h6>
+                            <p>SKU: WCH-112 • $45.00</p>
+                        </div>
+                        <div class="seller-stats">
+                            <h6>10 Sold</h6>
+                            <p>+$450 Revenue</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+            <!-- Right Column: Health, Reviews, Promo -->
+            <div class="col-12 col-xl-5 d-flex flex-column gap-3">
+                
+                <div class="dash-card" style="height: auto;">
+                    <div class="card-header-title mb-3">Store Health Diagnostics</div>
+                    
+                    <div class="health-score">
+                        <div>
+                            <p>Fulfillment Rate</p>
+                            <div class="health-progress"><div class="health-progress-bar" style="width: 98%;"></div></div>
+                        </div>
+                        <h4>98%</h4>
+                    </div>
+                    
+                    <div class="health-score">
+                        <div>
+                            <p>On-Time Delivery</p>
+                            <div class="health-progress"><div class="health-progress-bar" style="width: 95%;"></div></div>
+                        </div>
+                        <h4>95%</h4>
+                    </div>
+                    
+                    <div class="health-score mb-0">
+                        <div>
+                            <p>Message Response Time</p>
+                            <div class="health-progress"><div class="health-progress-bar" style="width: 92%; background: #c18a39;"></div></div>
+                        </div>
+                        <h4 style="color: #c18a39;">< 2 hrs</h4>
+                    </div>
+                </div>
+
+                <div class="dash-card" style="height: auto;">
+                    <div class="card-header-title mb-3">Latest 5-Star Reviews</div>
+                    
+                    <div class="review-feed-item">
+                        <div class="rating-stars">
+                            <span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span>
+                        </div>
+                        <p>"Absolutely stunning craftsmanship on the wallet. My husband loved the gold foil initials!"</p>
+                        <span>- Sarah J. (2 hours ago)</span>
+                    </div>
+                    
+                    <div class="review-feed-item mb-0">
+                        <div class="rating-stars">
+                            <span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span>
+                        </div>
+                        <p>"Fast shipping and amazing communication regarding the custom design."</p>
+                        <span>- Michael R. (Yesterday)</span>
+                    </div>
+                </div>
+                
+                <div class="promo-block">
+                    <h6><span class="material-symbols-outlined align-middle" style="font-size: 1.2rem;">campaign</span> Boost Your Weekend Sales!</h6>
+                    <p>Run a 15% off flash sale on your top-selling items to drive weekend traffic.</p>
+                    <button class="btn-gold"><span class="material-symbols-outlined" style="font-size: 1.2rem;">add_circle</span> Create Promo Code</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

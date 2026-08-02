@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Requests Pipeline</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        body {
+            background-color: var(--background);
+            padding: 1.5rem;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            /* Support for horizontal scrolling of the kanban board */
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 15px;
+            flex-shrink: 0;
+        }
+
+        .page-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .page-title .material-symbols-outlined { color: #dfb162; font-size: 2rem; }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #dfb162 0%, #c18a39 100%);
+            color: #ffffff;
+            border: none;
+            font-weight: 600;
+            padding: 10px 24px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(193, 138, 57, 0.4); color: #ffffff; }
+
+        /* Kanban Board */
+        .kanban-board {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            flex-grow: 1;
+            padding-bottom: 1rem;
+            align-items: flex-start;
+        }
+        
+        .kanban-board::-webkit-scrollbar { height: 8px; }
+        .kanban-board::-webkit-scrollbar-thumb { background: #dfb162; border-radius: 4px; }
+
+        .kanban-column {
+            background: #fdfdfd;
+            border-radius: 16px;
+            border: 1px solid #e0d8d0;
+            width: 320px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            max-height: 100%;
+        }
+
+        .column-header {
+            padding: 1.2rem;
+            border-bottom: 1px solid #e0d8d0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .column-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .column-title .material-symbols-outlined { font-size: 1.2rem; }
+
+        .task-count {
+            background: #f0e6d8;
+            color: #8c837b;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 12px;
+        }
+
+        .column-body {
+            padding: 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            flex-grow: 1;
+        }
+        
+        .column-body::-webkit-scrollbar { width: 4px; }
+        .column-body::-webkit-scrollbar-thumb { background: #d1c8c0; border-radius: 4px; }
+
+        /* Task Cards */
+        .task-card {
+            background: #ffffff;
+            border: 1px solid #e0d8d0;
+            border-radius: 12px;
+            padding: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            transition: all 0.2s;
+            cursor: grab;
+        }
+        
+        .task-card:hover { border-color: #dfb162; box-shadow: 0 4px 15px rgba(223, 177, 98, 0.15); }
+        .task-card:active { cursor: grabbing; }
+
+        .task-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+        .customer-name { font-weight: 700; color: #1a1a1a; margin: 0; }
+        .req-date { font-size: 0.75rem; color: #8c837b; font-weight: 500; }
+        
+        .task-product {
+            font-size: 0.85rem;
+            color: #4a4a4a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .task-product .material-symbols-outlined { font-size: 1rem; color: #dfb162; }
+
+        .task-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 10px;
+            border-top: 1px dashed #e0d8d0;
+        }
+        
+        .budget { font-weight: 700; color: #198754; font-size: 0.9rem; }
+        
+        .action-btns { display: flex; gap: 5px; }
+        .btn-icon {
+            background: #fdfdfd; border: 1px solid #e0d8d0;
+            color: #8c837b; width: 32px; height: 32px;
+            border-radius: 8px; display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s;
+        }
+        .btn-icon:hover { background: #dfb162; color: #fff; border-color: #dfb162; }
+        .btn-icon.success:hover { background: #198754; border-color: #198754; }
+
+        /* Specific Column Colors */
+        .col-new .column-title .material-symbols-outlined { color: #dc3545; }
+        .col-nego .column-title .material-symbols-outlined { color: #c18a39; }
+        .col-craft .column-title .material-symbols-outlined { color: #0dcaf0; }
+        .col-ship .column-title .material-symbols-outlined { color: #198754; }
+
+        @media (max-width: 768px) {
+            body { padding: 1rem; height: auto; display: block; }
+            .kanban-board { flex-direction: column; align-items: stretch; overflow-x: visible; }
+            .kanban-column { width: 100%; max-height: none; margin-bottom: 1rem; }
+            .column-body { overflow-y: visible; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid px-0 h-100 d-flex flex-column">
+        
+        <div class="page-header">
+            <div>
+                <h2 class="page-title"><span class="material-symbols-outlined">handyman</span> Commissions Pipeline</h2>
+                <p class="mb-0 text-muted small mt-1 fw-medium">Drag and drop requests to update their status.</p>
+            </div>
+            <button class="btn-gold"><span class="material-symbols-outlined">add</span> Create Custom Invoice</button>
+        </div>
+
+        <div class="kanban-board">
+            
+            <!-- Column 1: New Requests -->
+            <div class="kanban-column col-new">
+                <div class="column-header">
+                    <h5 class="column-title"><span class="material-symbols-outlined">fiber_new</span> New Requests</h5>
+                    <span class="task-count">2</span>
+                </div>
+                <div class="column-body">
+                    
+                    <div class="task-card">
+                        <div class="task-header">
+                            <h6 class="customer-name">Emily Davis</h6>
+                            <span class="req-date">2 hrs ago</span>
+                        </div>
+                        <div class="task-product">
+                            <span class="material-symbols-outlined">checkroom</span>
+                            Leather Jacket (Custom Logo)
+                        </div>
+                        <div class="task-details">
+                            <span class="budget">Budget: $400</span>
+                            <div class="action-btns">
+                                <button class="btn-icon" title="Message"><span class="material-symbols-outlined" style="font-size: 1.1rem;">chat</span></button>
+                                <button class="btn-icon success" title="Accept Request"><span class="material-symbols-outlined" style="font-size: 1.1rem;">check</span></button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-card">
+                        <div class="task-header">
+                            <h6 class="customer-name">James Wilson</h6>
+                            <span class="req-date">Yesterday</span>
+                        </div>
+                        <div class="task-product">
+                            <span class="material-symbols-outlined">wallet</span>
+                            Wallet (Gold Foil Initials)
+                        </div>
+                        <div class="task-details">
+                            <span class="budget">Budget: $85</span>
+                            <div class="action-btns">
+                                <button class="btn-icon" title="Message"><span class="material-symbols-outlined" style="font-size: 1.1rem;">chat</span></button>
+                                <button class="btn-icon success" title="Accept Request"><span class="material-symbols-outlined" style="font-size: 1.1rem;">check</span></button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <!-- Column 2: In Negotiation -->
+            <div class="kanban-column col-nego">
+                <div class="column-header">
+                    <h5 class="column-title"><span class="material-symbols-outlined">forum</span> Negotiating</h5>
+                    <span class="task-count">1</span>
+                </div>
+                <div class="column-body">
+                    
+                    <div class="task-card">
+                        <div class="task-header">
+                            <h6 class="customer-name">Sarah Jenkins</h6>
+                            <span class="req-date">Aug 01</span>
+                        </div>
+                        <div class="task-product">
+                            <span class="material-symbols-outlined">work</span>
+                            Messenger Bag (Suede lining)
+                        </div>
+                        <div class="task-details">
+                            <span class="budget" style="color: #c18a39;">Quote: $250</span>
+                            <div class="action-btns">
+                                <button class="btn-icon" title="Message"><span class="material-symbols-outlined" style="font-size: 1.1rem;">chat</span></button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <!-- Column 3: Crafting -->
+            <div class="kanban-column col-craft">
+                <div class="column-header">
+                    <h5 class="column-title"><span class="material-symbols-outlined">construction</span> Crafting</h5>
+                    <span class="task-count">3</span>
+                </div>
+                <div class="column-body">
+                    
+                    <div class="task-card" style="border-left: 3px solid #dfb162;">
+                        <div class="task-header">
+                            <h6 class="customer-name">Michael Ross</h6>
+                            <span class="req-date">Jul 28</span>
+                        </div>
+                        <div class="task-product">
+                            <span class="material-symbols-outlined">watch</span>
+                            Watch Strap (Dark Brown)
+                        </div>
+                        <div class="task-details">
+                            <span class="budget">Paid: $45</span>
+                            <div class="action-btns">
+                                <button class="btn-icon" title="Message"><span class="material-symbols-outlined" style="font-size: 1.1rem;">chat</span></button>
+                                <button class="btn-icon" title="Update Status"><span class="material-symbols-outlined" style="font-size: 1.1rem;">update</span></button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-card" style="border-left: 3px solid #dfb162;">
+                        <div class="task-header">
+                            <h6 class="customer-name">Emma Larson</h6>
+                            <span class="req-date">Jul 27</span>
+                        </div>
+                        <div class="task-product">
+                            <span class="material-symbols-outlined">diamond</span>
+                            Silver Ring (Size 7, Engraved)
+                        </div>
+                        <div class="task-details">
+                            <span class="budget">Paid: $120</span>
+                            <div class="action-btns">
+                                <button class="btn-icon" title="Message"><span class="material-symbols-outlined" style="font-size: 1.1rem;">chat</span></button>
+                                <button class="btn-icon" title="Update Status"><span class="material-symbols-outlined" style="font-size: 1.1rem;">update</span></button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <!-- Column 4: Ready to Ship -->
+            <div class="kanban-column col-ship">
+                <div class="column-header">
+                    <h5 class="column-title"><span class="material-symbols-outlined">local_shipping</span> Ready to Ship</h5>
+                    <span class="task-count">1</span>
+                </div>
+                <div class="column-body">
+                    
+                    <div class="task-card" style="border-left: 3px solid #198754;">
+                        <div class="task-header">
+                            <h6 class="customer-name">David Kim</h6>
+                            <span class="req-date">Jul 20</span>
+                        </div>
+                        <div class="task-product">
+                            <span class="material-symbols-outlined">cruelty_free</span>
+                            Pet Collar (Leather)
+                        </div>
+                        <div class="task-details">
+                            <span class="budget">Paid: $25</span>
+                            <div class="action-btns">
+                                <button class="btn-icon" title="Print Label" style="width: auto; padding: 0 10px; font-size: 0.8rem; font-weight: 600; color: #1a1a1a;">
+                                    <span class="material-symbols-outlined me-1" style="font-size: 1.1rem;">print</span> Label
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>

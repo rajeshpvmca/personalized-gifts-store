@@ -85,17 +85,18 @@
         }
 
         .nav-item-dash:hover {
-            color: var(--primary);
+            color: #dfb162;
             background: var(--surface-variant);
             transform: translateX(5px);
         }
 
         .nav-item-dash.active {
             color: #ffffff;
-            background: var(--primary);
+            background: linear-gradient(135deg, #dfb162 0%, #c18a39 100%);
             font-weight: 700;
-            box-shadow: 0 4px 15px rgba(26, 54, 93, 0.2);
+            box-shadow: 0 4px 15px rgba(223, 177, 98, 0.3);
             transform: translateX(5px);
+            border-left: 4px solid #8c5b16;
         }
         
         .nav-section-title {
@@ -145,7 +146,7 @@
             width: 44px;
             height: 44px;
             border-radius: 50%;
-            background: var(--secondary-container);
+            background: linear-gradient(135deg, #dfb162 0%, #c18a39 100%);
             color: #ffffff;
             display: flex;
             align-items: center;
@@ -187,7 +188,7 @@
                 border-radius: 8px; 
                 background: var(--surface-variant); 
                 border: 1px solid var(--outline-variant); 
-                color: var(--primary); 
+                color: #dfb162; 
             }
         }
 
@@ -207,23 +208,38 @@
     <div class="dash-sidebar" id="dashSidebar">
         <div class="sidebar-header">
             
-            <div style="-webkit-mask: url('../assets/images/logoStackly.webp') no-repeat center left; -webkit-mask-size: contain; mask: url('../assets/images/logoStackly.webp') no-repeat center left; mask-size: contain; background-color: var(--primary); width: 150px; height: 40px;" aria-label="Stackly Logo"></div>
+            <div style="-webkit-mask: url('assets/images/logoStackly.webp') no-repeat center left; -webkit-mask-size: contain; mask: url('assets/images/logoStackly.webp') no-repeat center left; mask-size: contain; background-color: #dfb162; width: 150px; height: 40px;" aria-label="Stackly Logo"></div>
         </div>
         
         <div class="sidebar-nav">
             <!-- Customer Navigation (5 Pages) -->
             <div id="navCustomer" style="display:none">
                 <p class="nav-section-title">Customer Portal</p>
+                <a href="dashboard/customer.html" class="nav-item-dash" data-page="customer"><span class="material-symbols-outlined">dashboard</span> Overview</a>
+                <a href="dashboard/customer_orders.html" class="nav-item-dash" data-page="customer_orders"><span class="material-symbols-outlined">local_shipping</span> My Orders</a>
+                <a href="dashboard/customer_wishlist.html" class="nav-item-dash" data-page="customer_wishlist"><span class="material-symbols-outlined">favorite</span> Wishlist</a>
+                <a href="dashboard/customer_messages.html" class="nav-item-dash" data-page="customer_messages"><span class="material-symbols-outlined">forum</span> Messages</a>
+                <a href="dashboard/customer_reviews.html" class="nav-item-dash" data-page="customer_reviews"><span class="material-symbols-outlined">star_rate</span> My Reviews</a>
             </div>
 
             <!-- Artisan Navigation (5 Pages) -->
             <div id="navArtisan" style="display:none">
                 <p class="nav-section-title">Artisan Workspace</p>
+                <a href="dashboard/artisan.html" class="nav-item-dash" data-page="artisan"><span class="material-symbols-outlined">insights</span> Analytics</a>
+                <a href="dashboard/artisan_products.html" class="nav-item-dash" data-page="artisan_products"><span class="material-symbols-outlined">inventory_2</span> Manage Products</a>
+                <a href="dashboard/artisan_sales.html" class="nav-item-dash" data-page="artisan_sales"><span class="material-symbols-outlined">point_of_sale</span> Sales & Revenue</a>
+                <a href="dashboard/artisan_commissions.html" class="nav-item-dash" data-page="artisan_commissions"><span class="material-symbols-outlined">design_services</span> Custom Requests</a>
+                <a href="dashboard/artisan_payouts.html" class="nav-item-dash" data-page="artisan_payouts"><span class="material-symbols-outlined">account_balance_wallet</span> Payouts</a>
             </div>
 
             <!-- Admin Navigation (5 Pages) -->
             <div id="navAdmin" style="display:none">
                 <p class="nav-section-title">System Admin</p>
+                <a href="dashboard/admin.html" class="nav-item-dash" data-page="admin"><span class="material-symbols-outlined">admin_panel_settings</span> System Overview</a>
+                <a href="dashboard/admin_users.html" class="nav-item-dash" data-page="admin_users"><span class="material-symbols-outlined">group</span> User Management</a>
+                <a href="dashboard/admin_revenue.html" class="nav-item-dash" data-page="admin_revenue"><span class="material-symbols-outlined">monitoring</span> Platform Revenue</a>
+                <a href="dashboard/admin_reports.html" class="nav-item-dash" data-page="admin_reports"><span class="material-symbols-outlined">summarize</span> Reports</a>
+                <a href="dashboard/admin_audit.html" class="nav-item-dash" data-page="admin_audit"><span class="material-symbols-outlined">receipt_long</span> Audit Logs</a>
             </div>
 
             <p class="nav-section-title" style="margin-top: 30px;">Settings</p>
@@ -237,22 +253,22 @@
         <header class="dash-header">
             <div class="d-flex align-items-center gap-3">
                 <button onclick="window.top.location.href='404.html'" class="btn btn-light d-lg-none p-2 d-flex align-items-center justify-content-center" id="sidebarToggle">
-                    <span class="material-symbols-outlined text-primary">menu</span>
+                    <span class="material-symbols-outlined" style="color: #dfb162;">menu</span>
                 </button>
                 <div class="d-flex flex-column">
-                    <h4 class="mb-0 font-heading fw-bold text-primary" style="font-size: 1.2rem;">Workspace</h4>
+                    <h4 class="mb-0 font-heading fw-bold" style="color: #c18a39; font-size: 1.2rem;">Workspace</h4>
                     <span class="badge mt-1" style="width: fit-content; background: var(--surface-variant); color: var(--on-surface-variant); border: 1px solid var(--outline-variant); font-family: 'Inter', sans-serif;" id="roleBadge">ROLE</span>
                 </div>
             </div>
 
             <div class="d-flex align-items-center gap-4">
                 <div class="text-end d-none d-sm-block">
-                    <div class="fw-bold text-primary" id="navUserName" style="font-family: 'Inter', sans-serif;">User Name</div>
-                    <div class="text-secondary small" id="navUserEmail">email@example.com</div>
+                    <div class="fw-bold" style="color: #c18a39; font-family: 'Inter', sans-serif;" id="navUserName">User Name</div>
+                    <div class="small" style="color: #8c837b;" id="navUserEmail">email@example.com</div>
                 </div>
                 <div class="d-flex align-items-center gap-3 border-start ps-3" style="border-color: var(--outline-variant) !important;">
                     <div class="user-avatar" id="userAvatar">U</div>
-                    <button onclick="window.top.location.href='404.html'" class="btn btn-premium btn-premium-primary rounded-pill px-4 py-2 fw-bold d-flex align-items-center gap-2 shadow-sm" id="signoutBtn" style="font-size: 0.85rem;">
+                    <button class="btn rounded-pill px-4 py-2 fw-bold d-flex align-items-center gap-2 shadow-sm font-button" id="signoutBtn" style="background: linear-gradient(135deg, #dfb162 0%, #c18a39 100%); color: #fff; border: none; font-size: 0.85rem;">
                         <span class="material-symbols-outlined" style="font-size: 1.1rem;">logout</span> <span class="d-none d-md-inline">Sign Out</span>
                     </button>
                 </div>

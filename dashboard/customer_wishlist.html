@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wishlist</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        body {
+            background-color: var(--background);
+            padding: 1.5rem;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .page-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .page-title .material-symbols-outlined {
+            color: #dfb162;
+            font-size: 2rem;
+        }
+
+        .wishlist-toolbar {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            border: 1px solid #f0e6d8;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .search-input {
+            border: 1px solid #d1c8c0;
+            border-radius: 30px;
+            padding: 8px 20px 8px 45px;
+            width: 300px;
+            background: #fcfcfc url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%238c837b" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>') no-repeat 15px center;
+            transition: all 0.3s;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #dfb162;
+            box-shadow: 0 0 0 3px rgba(223, 177, 98, 0.2);
+            background-color: #ffffff;
+        }
+
+        .product-card {
+            background: #ffffff;
+            border-radius: 16px;
+            border: 1px solid #f0e6d8;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-card:hover {
+            box-shadow: 0 10px 30px rgba(193, 138, 57, 0.15);
+            transform: translateY(-5px);
+            border-color: #dfb162;
+        }
+
+        .product-img-wrapper {
+            height: 200px;
+            background: linear-gradient(to bottom right, #fcfcfc, #f0e6d8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .product-img-wrapper .material-symbols-outlined {
+            font-size: 5rem;
+            color: #c18a39;
+            opacity: 0.8;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-img-wrapper .material-symbols-outlined {
+            transform: scale(1.1);
+        }
+
+        .badge-status {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .badge-sale { background: #198754; color: #fff; }
+        .badge-stock { background: #dc3545; color: #fff; }
+
+        .btn-heart {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            color: #dc3545;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        
+        .btn-heart:hover {
+            transform: scale(1.1);
+            background: #fdf5f6;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #1a1a1a;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            line-height: 1.3;
+        }
+
+        .artisan-name {
+            color: #8c837b;
+            font-size: 0.85rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            margin-bottom: 1rem;
+        }
+        
+        .rating .material-symbols-outlined {
+            font-size: 1.1rem;
+            color: #dfb162;
+        }
+        
+        .rating-count {
+            font-size: 0.8rem;
+            color: #8c837b;
+            margin-left: 5px;
+        }
+
+        .product-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #c18a39;
+            margin-top: auto;
+            margin-bottom: 1rem;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #dfb162 0%, #c18a39 100%);
+            color: #ffffff;
+            border: none;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-gold:hover {
+            box-shadow: 0 4px 15px rgba(193, 138, 57, 0.4);
+            color: #ffffff;
+        }
+
+        .btn-outline-dark-custom {
+            border: 1px solid #d1c8c0;
+            color: #4a4a4a;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .btn-outline-dark-custom:hover {
+            border-color: #dfb162;
+            color: #c18a39;
+            background: #fafafa;
+        }
+
+        /* 320px responsiveness */
+        @media (max-width: 576px) {
+            body { padding: 1rem; }
+            .wishlist-toolbar { padding: 1rem; flex-direction: column; align-items: stretch; }
+            .search-input { width: 100%; }
+            .toolbar-actions { display: flex; justify-content: space-between; gap: 10px; }
+            .toolbar-actions select { flex-grow: 1; border-radius: 30px; padding: 8px 15px; border: 1px solid #d1c8c0; }
+            .product-img-wrapper { height: 160px; }
+            .product-img-wrapper .material-symbols-outlined { font-size: 4rem; }
+            .product-info { padding: 1.2rem; }
+            .product-price { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid px-0">
+        <h2 class="page-title"><span class="material-symbols-outlined">favorite</span> My Wishlist</h2>
+
+        <div class="wishlist-toolbar">
+            <input type="text" class="search-input" placeholder="Search wishlist items...">
+            <div class="toolbar-actions d-flex gap-3">
+                <select class="form-select w-auto" style="border-radius: 30px; border-color: #d1c8c0; font-weight: 500; color: #4a4a4a; box-shadow: none;">
+                    <option value="">Sort by: Recently Added</option>
+                    <option value="">Price: Low to High</option>
+                    <option value="">Price: High to Low</option>
+                    <option value="">Highest Rated</option>
+                </select>
+                <button class="btn btn-light d-flex align-items-center justify-content-center" style="border-radius: 50%; width: 40px; height: 40px; border: 1px solid #d1c8c0; color: #4a4a4a;">
+                    <span class="material-symbols-outlined">filter_list</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="row g-4 mb-5">
+            
+            <!-- Product 1 -->
+            <div class="col-12 col-sm-6 col-xl-4">
+                <div class="product-card">
+                    <div class="product-img-wrapper">
+                        <span class="badge-status badge-sale">-15% OFF</span>
+                        <button class="btn-heart"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span></button>
+                        <span class="material-symbols-outlined">watch</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Engraved Vintage Pocket Watch</h3>
+                        <div class="artisan-name">By Artisan Timeless</div>
+                        <div class="rating">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star_half</span>
+                            <span class="rating-count">(42)</span>
+                        </div>
+                        <div class="d-flex align-items-end gap-2 mt-auto mb-3">
+                            <div class="product-price mb-0">$120.00</div>
+                            <div class="text-muted text-decoration-line-through mb-1" style="font-size: 0.9rem;">$142.00</div>
+                        </div>
+                        <button class="btn-gold"><span class="material-symbols-outlined">shopping_cart</span> Add to Cart</button>
+                        <button class="btn-outline-dark-custom">Customize Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="col-12 col-sm-6 col-xl-4">
+                <div class="product-card">
+                    <div class="product-img-wrapper">
+                        <button class="btn-heart"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span></button>
+                        <span class="material-symbols-outlined">checkroom</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Custom Embossed Leather Jacket</h3>
+                        <div class="artisan-name">By LeatherCraft</div>
+                        <div class="rating">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="rating-count">(128)</span>
+                        </div>
+                        <div class="product-price">$350.00</div>
+                        <button class="btn-gold"><span class="material-symbols-outlined">shopping_cart</span> Add to Cart</button>
+                        <button class="btn-outline-dark-custom">Customize Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="col-12 col-sm-6 col-xl-4">
+                <div class="product-card">
+                    <div class="product-img-wrapper">
+                        <span class="badge-status badge-stock">Only 2 Left</span>
+                        <button class="btn-heart"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span></button>
+                        <span class="material-symbols-outlined">diamond</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Silver Name Necklace</h3>
+                        <div class="artisan-name">By SilverLine</div>
+                        <div class="rating">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined">star</span>
+                            <span class="rating-count">(15)</span>
+                        </div>
+                        <div class="product-price">$75.00</div>
+                        <button class="btn-gold"><span class="material-symbols-outlined">shopping_cart</span> Add to Cart</button>
+                        <button class="btn-outline-dark-custom">Customize Order</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="col-12 col-sm-6 col-xl-4">
+                <div class="product-card">
+                    <div class="product-img-wrapper">
+                        <button class="btn-heart"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span></button>
+                        <span class="material-symbols-outlined">local_cafe</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Hand-painted Ceramic Mug</h3>
+                        <div class="artisan-name">By Earth&Clay</div>
+                        <div class="rating">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star_half</span>
+                            <span class="rating-count">(89)</span>
+                        </div>
+                        <div class="product-price">$32.00</div>
+                        <button class="btn-gold"><span class="material-symbols-outlined">shopping_cart</span> Add to Cart</button>
+                        <button class="btn-outline-dark-custom">Customize Order</button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="text-center mt-2 mb-5 pb-4">
+            <button class="btn btn-outline-dark-custom w-auto px-5 rounded-pill shadow-sm" style="border-width: 2px;">Load More Items</button>
+        </div>
+        
+    </div>
+</body>
+</html>

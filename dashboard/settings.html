@@ -3,203 +3,315 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account Settings - Stackly</title>
+    <title>Account Settings</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="../css/style.css">
+
     <style>
         body {
-            background-color: transparent;
-            padding: 2rem;
+            background-color: var(--background);
+            padding: 1.5rem;
             font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
         }
 
-        .settings-card {
-            background: #ffffff;
-            border-radius: 12px;
-            border: 1px solid var(--outline-variant);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-            padding: 2rem;
-            height: 100%;
-        }
-
-        .section-title {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            color: var(--primary);
-            padding-bottom: 1rem;
-            border-bottom: 2px solid var(--outline-variant);
-            margin-bottom: 2rem;
-        }
-
-        /* Custom Toggle Switch for forms */
-        .form-switch .form-check-input {
-            width: 2.5em;
-            height: 1.2em;
-            cursor: pointer;
-        }
-        .form-switch .form-check-input:checked {
-            background-color: var(--primary);
-            border-color: var(--primary);
-        }
-
-        .setting-row {
+        .page-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 1.2rem 0;
-            border-bottom: 1px dashed var(--outline-variant);
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 15px;
         }
-        .setting-row:last-child { border-bottom: none; }
+
+        .page-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .page-title .material-symbols-outlined { color: #dfb162; font-size: 2rem; }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #dfb162 0%, #c18a39 100%);
+            color: #ffffff;
+            border: none;
+            font-weight: 600;
+            padding: 10px 24px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
         
-        .theme-preview {
-            width: 80px;
-            height: 60px;
-            border-radius: 8px;
-            border: 2px solid var(--outline-variant);
-            cursor: pointer;
+        .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(193, 138, 57, 0.4); color: #ffffff; }
+
+        .dash-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            border: 1px solid #f0e6d8;
+            height: 100%;
+        }
+
+        .card-header-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #1a1a1a;
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f0e6d8;
+        }
+
+        /* Settings Layout */
+        .settings-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .settings-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            border-radius: 12px;
+            color: #4a4a4a;
+            font-weight: 600;
+            text-decoration: none;
             transition: all 0.2s;
-            position: relative;
+            border: 1px solid transparent;
         }
-        .theme-preview.active {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(30, 58, 138, 0.1);
-        }
-        .theme-light { background: #f8fafc; }
-        .theme-dark { background: #0f172a; }
         
-        .theme-preview.active::after {
-            content: '\e876'; /* Material check icon */
-            font-family: 'Material Symbols Outlined';
-            position: absolute;
-            bottom: -10px;
-            right: -10px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            width: 24px; height: 24px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 14px;
+        .settings-nav-item:hover { background: #fafafa; border-color: #e0d8d0; color: #1a1a1a; }
+        .settings-nav-item.active { background: rgba(223, 177, 98, 0.1); color: #c18a39; border-color: #dfb162; }
+        .settings-nav-item .material-symbols-outlined { font-size: 1.3rem; }
+
+        /* Form Elements */
+        .form-label { font-weight: 600; color: #4a4a4a; margin-bottom: 8px; font-size: 0.9rem; }
+        .form-control, .form-select {
+            border-radius: 10px;
+            border: 1px solid #d1c8c0;
+            padding: 12px 15px;
+            background: #fafafa;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            background: #fff;
+            border-color: #dfb162;
+            box-shadow: 0 0 0 3px rgba(223, 177, 98, 0.2);
+        }
+
+        .setting-section { margin-bottom: 2rem; }
+
+        /* Custom Toggle Switch */
+        .toggle-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0e6d8;
+        }
+        .toggle-row:last-child { border-bottom: none; }
+        
+        .toggle-info h6 { margin: 0 0 5px 0; font-weight: 700; color: #1a1a1a; font-size: 0.95rem; }
+        .toggle-info p { margin: 0; font-size: 0.85rem; color: #8c837b; }
+        
+        .switch { position: relative; display: inline-block; width: 50px; height: 26px; flex-shrink: 0; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #e0d8d0; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        input:checked + .slider { background-color: #198754; }
+        input:checked + .slider:before { transform: translateX(24px); }
+
+        /* Danger Zone */
+        .danger-zone {
+            border: 1px solid #dc3545;
+            background: rgba(220, 53, 69, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        
+        .danger-zone h6 { color: #dc3545; font-weight: 700; margin-bottom: 10px; }
+        .danger-zone p { font-size: 0.85rem; color: #4a4a4a; margin-bottom: 15px; }
+
+        @media (max-width: 992px) {
+            .settings-nav { flex-direction: row; flex-wrap: wrap; margin-bottom: 1rem; }
+            .settings-nav-item { flex-grow: 1; justify-content: center; }
+            .settings-nav-item span:not(.material-symbols-outlined) { display: none; }
+        }
+
+        @media (max-width: 576px) {
+            body { padding: 1rem; }
+            .page-header { flex-direction: column; align-items: stretch; }
+            .btn-gold { justify-content: center; }
+            .settings-nav-item span:not(.material-symbols-outlined) { display: block; }
+            .settings-nav { flex-direction: column; }
         }
     </style>
 </head>
 <body>
-
-    <div class="container-fluid p-0">
+    <div class="container-fluid px-0">
         
-        <div class="row justify-content-center">
-            <div class="">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <div>
-                        <h4 class="font-heading fw-bold text-primary mb-1">App Preferences</h4>
-                        <p class="text-secondary small font-button mb-0">Manage your personal settings, notifications, and app appearance.</p>
-                    </div>
-                    <button onclick="window.top.location.href='../404.html'" class="btn btn-premium btn-premium-primary rounded-pill px-4 py-2 font-button fw-bold d-flex align-items-center gap-2">
-                        <span class="material-symbols-outlined fs-5">save</span> Save Preferences
-                    </button>
-                </div>
-
-                <div class="row g-4">
-                    
-                    <!-- Appearance & Language -->
-                    <div class="col-lg-6">
-                        <div class="settings-card">
-                            <h5 class="section-title d-flex align-items-center gap-2">
-                                <span class="material-symbols-outlined">visibility</span> Appearance & Locale
-                            </h5>
-                            
-                            <h6 class="fw-bold text-primary mb-3 mt-4">Dashboard Theme</h6>
-                            <div class="d-flex gap-4 mb-4 pb-4 border-bottom border-outline-variant">
-                                <div class="text-center">
-                                    <div class="theme-preview theme-light active mb-2"></div>
-                                    <span class="small font-button fw-bold text-secondary">Light Mode</span>
-                                </div>
-                                <div class="text-center">
-                                    <div class="theme-preview theme-dark mb-2"></div>
-                                    <span class="small font-button fw-bold text-secondary">Dark Mode</span>
-                                </div>
-                            </div>
-
-                            <div class="mb-4">
-                                <label class="fw-bold text-primary mb-2 small">Display Language</label>
-                                <select class="form-select border-outline-variant font-button text-secondary">
-                                    <option selected>English (US)</option>
-                                    <option>English (UK)</option>
-                                    <option>Spanish (ES)</option>
-                                    <option>French (FR)</option>
-                                    <option>German (DE)</option>
-                                </select>
-                            </div>
-                            
-                            <div class="mb-2">
-                                <label class="fw-bold text-primary mb-2 small">Currency Format</label>
-                                <select class="form-select border-outline-variant font-button text-secondary">
-                                    <option selected>USD ($) - United States Dollar</option>
-                                    <option>EUR (€) - Euro</option>
-                                    <option>GBP (£) - British Pound</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Notification Preferences -->
-                    <div class="col-lg-6">
-                        <div class="settings-card">
-                            <h5 class="section-title d-flex align-items-center gap-2">
-                                <span class="material-symbols-outlined">notifications_active</span> Notifications
-                            </h5>
-                            
-                            <h6 class="fw-bold text-primary mb-3 mt-4 text-uppercase small">Email Notifications</h6>
-                            
-                            <div class="setting-row">
-                                <div>
-                                    <h6 class="fw-bold text-dark mb-1 font-button">Weekly Digest</h6>
-                                    <p class="small text-secondary mb-0">Receive a weekly summary of account activity.</p>
-                                </div>
-                                <div class="form-check form-switch"><input class="form-check-input" type="checkbox" checked></div>
-                            </div>
-                            <div class="setting-row">
-                                <div>
-                                    <h6 class="fw-bold text-dark mb-1 font-button">Direct Messages</h6>
-                                    <p class="small text-secondary mb-0">Email me when someone sends me a message.</p>
-                                </div>
-                                <div class="form-check form-switch"><input class="form-check-input" type="checkbox" checked></div>
-                            </div>
-                            <div class="setting-row">
-                                <div>
-                                    <h6 class="fw-bold text-dark mb-1 font-button">Document Updates</h6>
-                                    <p class="small text-secondary mb-0">Email me when files are uploaded to my projects.</p>
-                                </div>
-                                <div class="form-check form-switch"><input class="form-check-input" type="checkbox"></div>
-                            </div>
-
-                            <h6 class="fw-bold text-primary mb-3 mt-5 text-uppercase small">In-App Notifications</h6>
-                            
-                            <div class="setting-row">
-                                <div>
-                                    <h6 class="fw-bold text-dark mb-1 font-button">System Alerts</h6>
-                                    <p class="small text-secondary mb-0">Show popups for critical system updates.</p>
-                                </div>
-                                <div class="form-check form-switch"><input class="form-check-input" type="checkbox" checked></div>
-                            </div>
-                            <div class="setting-row">
-                                <div>
-                                    <h6 class="fw-bold text-dark mb-1 font-button">Sound Effects</h6>
-                                    <p class="small text-secondary mb-0">Play a sound for new notifications.</p>
-                                </div>
-                                <div class="form-check form-switch"><input class="form-check-input" type="checkbox"></div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+        <div class="page-header">
+            <h2 class="page-title"><span class="material-symbols-outlined">settings</span> Settings</h2>
+            <button class="btn-gold"><span class="material-symbols-outlined">save</span> Save Changes</button>
         </div>
 
-    </div>
+        <div class="row g-4">
+            <!-- Left Sidebar Navigation -->
+            <div class="col-12 col-lg-3">
+                <div class="dash-card p-3">
+                    <div class="settings-nav">
+                        <a href="#" class="settings-nav-item active">
+                            <span class="material-symbols-outlined">manage_accounts</span>
+                            <span>Account Details</span>
+                        </a>
+                        <a href="#" class="settings-nav-item">
+                            <span class="material-symbols-outlined">lock</span>
+                            <span>Security & Password</span>
+                        </a>
+                        <a href="#" class="settings-nav-item">
+                            <span class="material-symbols-outlined">notifications_active</span>
+                            <span>Notifications</span>
+                        </a>
+                        <a href="#" class="settings-nav-item">
+                            <span class="material-symbols-outlined">credit_card</span>
+                            <span>Billing & Payments</span>
+                        </a>
+                        <a href="#" class="settings-nav-item">
+                            <span class="material-symbols-outlined">palette</span>
+                            <span>Appearance</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
 
+            <!-- Right Content Area -->
+            <div class="col-12 col-lg-9">
+                <div class="dash-card">
+                    
+                    <!-- Account Settings Section -->
+                    <div class="setting-section">
+                        <div class="card-header-title">Personal Information</div>
+                        
+                        <div class="row g-3">
+                            <div class="col-12 col-md-6">
+                                <label class="form-label">First Name</label>
+                                <input type="text" class="form-control" value="Sarah">
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" class="form-control" value="Jenkins">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Email Address</label>
+                                <div class="position-relative">
+                                    <input type="email" class="form-control" value="sarah.jenkins@example.com">
+                                    <span class="badge bg-success position-absolute" style="right: 10px; top: 12px;">Verified</span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Short Bio (Public Profile)</label>
+                                <textarea class="form-control" rows="3">Hi! I love collecting handmade leather goods and custom woodwork...</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preferences Section -->
+                    <div class="setting-section">
+                        <div class="card-header-title">Notification Preferences</div>
+                        
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <h6>Order Updates</h6>
+                                <p>Receive emails about your order status, shipping, and delivery.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <h6>Artisan Messages</h6>
+                                <p>Get notified when an artisan replies to your custom request.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <h6>Promotional Offers</h6>
+                                <p>Receive occasional emails about discounts and new collections.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <h6>SMS Alerts</h6>
+                                <p>Get text messages for critical security alerts.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Region & Language -->
+                    <div class="setting-section">
+                        <div class="card-header-title">Regional Settings</div>
+                        <div class="row g-3">
+                            <div class="col-12 col-md-6">
+                                <label class="form-label">Language</label>
+                                <select class="form-select">
+                                    <option>English (US)</option>
+                                    <option>Spanish (ES)</option>
+                                    <option>French (FR)</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label">Timezone</label>
+                                <select class="form-select">
+                                    <option>(GMT-05:00) Eastern Time</option>
+                                    <option>(GMT-08:00) Pacific Time</option>
+                                    <option>(GMT+00:00) London</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Danger Zone -->
+                    <div class="danger-zone mt-5">
+                        <h6><span class="material-symbols-outlined align-middle me-1">warning</span> Danger Zone</h6>
+                        <p>Once you delete your account, there is no going back. Please be certain.</p>
+                        <button class="btn btn-outline-danger fw-bold rounded-pill px-4 py-2">Deactivate Account</button>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </div>
 </body>
 </html>
-

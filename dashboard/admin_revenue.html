@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform Revenue Control</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <style>
+        body {
+            background-color: var(--background);
+            padding: 1.5rem;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .page-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .page-title .material-symbols-outlined { color: #dfb162; font-size: 2rem; }
+
+        .time-filter {
+            background: #ffffff;
+            border: 1px solid #d1c8c0;
+            border-radius: 30px;
+            padding: 5px;
+            display: flex;
+        }
+
+        .time-filter button {
+            background: transparent;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 20px;
+            color: #8c837b;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .time-filter button.active { background: #dfb162; color: #fff; box-shadow: 0 2px 10px rgba(223, 177, 98, 0.3); }
+
+        .dash-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            border: 1px solid #f0e6d8;
+            height: 100%;
+        }
+
+        .card-header-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #1a1a1a;
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Metric Cards */
+        .metric-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: #fdfdfd;
+            border: 1px solid #e0d8d0;
+            padding: 1.5rem;
+            border-radius: 16px;
+            height: 100%;
+            transition: all 0.3s;
+        }
+        
+        .metric-card:hover { border-color: #dfb162; box-shadow: 0 8px 25px rgba(223,177,98,0.1); transform: translateY(-3px); }
+
+        .metric-icon {
+            width: 60px; height: 60px;
+            border-radius: 12px;
+            background: rgba(223, 177, 98, 0.1);
+            color: #c18a39;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .metric-icon span { font-size: 2rem; }
+
+        .metric-info h4 { font-family: 'Montserrat', sans-serif; font-size: 1.8rem; font-weight: 700; color: #1a1a1a; margin: 0 0 2px 0; }
+        .metric-info p { margin: 0; font-size: 0.85rem; font-weight: 600; color: #8c837b; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .trend-up { color: #198754; font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; gap: 2px; }
+
+        /* Commission Banner */
+        .commission-banner {
+            background: linear-gradient(135deg, #dfb162 0%, #c18a39 100%);
+            border-radius: 16px;
+            padding: 2rem;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .commission-banner::after {
+            content: '';
+            position: absolute;
+            top: -20%; right: -10%;
+            width: 200px; height: 200px;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+        }
+        
+        .comm-stat h2 { font-family: 'Montserrat', sans-serif; font-size: 3rem; font-weight: 700; margin: 0; line-height: 1; }
+        .comm-stat p { margin: 5px 0 0 0; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9; }
+
+        /* Payouts Table */
+        .payouts-table { width: 100%; margin-bottom: 0; }
+        .payouts-table th {
+            background: #fdfcfb;
+            color: #8c837b;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+            padding: 1rem 1.5rem;
+            border-bottom: 2px solid #f0e6d8;
+        }
+
+        .payouts-table td {
+            padding: 1.2rem 1.5rem;
+            vertical-align: middle;
+            border-bottom: 1px solid #f0e6d8;
+            color: #1a1a1a;
+            font-weight: 500;
+        }
+
+        .user-cell { display: flex; align-items: center; gap: 15px; }
+        .user-avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; flex-shrink: 0; font-weight: 700; }
+        .user-name { font-weight: 700; color: #1a1a1a; display: block; margin-bottom: 2px; }
+        .user-id { font-size: 0.75rem; color: #8c837b; }
+
+        .btn-process {
+            background: #1a1a1a; color: #fff; border: none;
+            font-size: 0.8rem; font-weight: 600;
+            padding: 6px 15px; border-radius: 20px;
+            transition: all 0.2s; display: inline-flex; align-items: center; gap: 5px;
+        }
+        
+        .btn-process:hover { background: #198754; transform: translateY(-2px); }
+
+        @media (max-width: 992px) {
+            .payouts-table thead { display: none; }
+            .payouts-table tbody tr { display: block; padding: 1rem; border-bottom: 1px solid #f0e6d8; }
+            .payouts-table td { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; border: none; }
+            .payouts-table td::before { content: attr(data-label); font-weight: 600; color: #8c837b; font-size: 0.8rem; text-transform: uppercase; }
+            .user-cell { width: 100%; justify-content: flex-start; margin-bottom: 10px; }
+            .payouts-table td:first-child::before { display: none; }
+            .btn-process { width: 100%; justify-content: center; margin-top: 10px; }
+        }
+
+        @media (max-width: 576px) {
+            body { padding: 1rem; }
+            .time-filter { width: 100%; justify-content: space-between; }
+            .time-filter button { flex-grow: 1; text-align: center; }
+            .commission-banner { flex-direction: column; text-align: center; justify-content: center; }
+            .comm-stat h2 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid px-0">
+        
+        <div class="page-header">
+            <h2 class="page-title"><span class="material-symbols-outlined">payments</span> Revenue Control</h2>
+            
+            <div class="time-filter">
+                <button>7D</button>
+                <button class="active">30D</button>
+                <button>3M</button>
+                <button>1Y</button>
+                <button>YTD</button>
+            </div>
+        </div>
+
+        <!-- Top Metrics -->
+        <div class="row g-3 mb-4">
+            <div class="col-12 col-xl-8">
+                <div class="row g-3 h-100">
+                    <div class="col-12 col-md-6">
+                        <div class="metric-card">
+                            <div class="metric-icon" style="background: rgba(13, 202, 240, 0.1); color: #0dcaf0;"><span class="material-symbols-outlined">point_of_sale</span></div>
+                            <div class="metric-info">
+                                <h4>$124,500</h4>
+                                <div class="d-flex align-items-center gap-2">
+                                    <p>Gross Merchandise Volume</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-12 col-md-6">
+                        <div class="metric-card">
+                            <div class="metric-icon"><span class="material-symbols-outlined">account_balance_wallet</span></div>
+                            <div class="metric-info">
+                                <h4>$112,050</h4>
+                                <div class="d-flex align-items-center gap-2">
+                                    <p>Artisan Earnings Paid</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-xl-4">
+                <div class="commission-banner">
+                    <div class="comm-stat" style="z-index: 2;">
+                        <h2>$12,450</h2>
+                        <p>Net Platform Revenue</p>
+                    </div>
+                    <div class="text-end" style="z-index: 2;">
+                        <span class="badge bg-white text-dark rounded-pill mb-2 px-3 py-2 fw-bold" style="font-size: 0.8rem;">10% Comm. Rate</span>
+                        <div class="trend-up" style="color: #fff;"><span class="material-symbols-outlined">trending_up</span> +15% vs Last Month</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <!-- Left Chart -->
+            <div class="col-12 col-xl-12">
+                <div class="dash-card">
+                    <div class="card-header-title">Gross Volume vs Platform Revenue</div>
+                    <div id="chartRevenue"></div>
+                </div>
+            </div>
+
+            <!-- Payouts Table -->
+            <div class="col-12">
+                <div class="dash-card" style="padding: 0; overflow: hidden;">
+                    <div class="d-flex justify-content-between align-items-center p-4 border-bottom" style="border-color: #f0e6d8 !important;">
+                        <div class="card-header-title mb-0">Pending Artisan Payouts <span class="badge ms-2" style="background: rgba(220, 53, 69, 0.1); color: #dc3545;">3 Requires Action</span></div>
+                        <button class="btn btn-outline-secondary btn-sm rounded-pill px-3" style="border-color: #d1c8c0; color: #4a4a4a; font-weight: 600;">Process All</button>
+                    </div>
+                    
+                    <table class="payouts-table">
+                        <thead>
+                            <tr>
+                                <th>Artisan</th>
+                                <th>Destination</th>
+                                <th>Period Ending</th>
+                                <th>Payout Amount</th>
+                                <th class="text-end">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <tr>
+                                <td data-label="Artisan">
+                                    <div class="user-cell">
+                                        <div class="user-avatar" style="background: #1a1a1a;">LC</div>
+                                        <div>
+                                            <span class="user-name">LeatherCraft Studios</span>
+                                            <span class="user-id">ID: ART-9214</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="Destination">Chase (...4921)</td>
+                                <td data-label="Period Ending">Aug 15, 2026</td>
+                                <td data-label="Payout Amount" class="fw-bold" style="color: #1a1a1a;">$1,245.50</td>
+                                <td data-label="Action" class="text-md-end">
+                                    <button class="btn-process"><span class="material-symbols-outlined" style="font-size: 1.1rem;">send_money</span> Process</button>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td data-label="Artisan">
+                                    <div class="user-cell">
+                                        <div class="user-avatar" style="background: #8c5b16;">WW</div>
+                                        <div>
+                                            <span class="user-name">WoodenWonders</span>
+                                            <span class="user-id">ID: ART-8102</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="Destination">Wells Fargo (...1042)</td>
+                                <td data-label="Period Ending">Aug 15, 2026</td>
+                                <td data-label="Payout Amount" class="fw-bold" style="color: #1a1a1a;">$840.00</td>
+                                <td data-label="Action" class="text-md-end">
+                                    <button class="btn-process"><span class="material-symbols-outlined" style="font-size: 1.1rem;">send_money</span> Process</button>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td data-label="Artisan">
+                                    <div class="user-cell">
+                                        <div class="user-avatar" style="background: #dfb162;">SJ</div>
+                                        <div>
+                                            <span class="user-name">Silver Jewelers</span>
+                                            <span class="user-id">ID: ART-7531</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="Destination">BofA (...8812)</td>
+                                <td data-label="Period Ending">Aug 15, 2026</td>
+                                <td data-label="Payout Amount" class="fw-bold" style="color: #1a1a1a;">$3,450.00</td>
+                                <td data-label="Action" class="text-md-end">
+                                    <button class="btn-process"><span class="material-symbols-outlined" style="font-size: 1.1rem;">send_money</span> Process</button>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <script>
+        // Dual Axis Chart
+        new ApexCharts(document.querySelector('#chartRevenue'), {
+            chart: { type: 'line', height: 400, toolbar: { show: false }, fontFamily: 'Inter, sans-serif' },
+            colors: ['#e0d8d0', '#dfb162'],
+            series: [
+                { name: 'Gross Volume (GMV)', type: 'column', data: [12000, 15000, 13000, 21000, 18000, 26000, 32000] },
+                { name: 'Net Platform Revenue', type: 'line', data: [1200, 1500, 1300, 2100, 1800, 2600, 3200] }
+            ],
+            stroke: { width: [0, 4] },
+            dataLabels: { enabled: false },
+            xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'], labels: { style: { colors: '#8c837b', fontWeight: 500 } } },
+            yaxis: [
+                { title: { text: 'Gross Volume ($)', style: { color: '#8c837b', fontWeight: 600 } }, labels: { style: { colors: '#8c837b', fontWeight: 500 } } },
+                { opposite: true, title: { text: 'Platform Revenue ($)', style: { color: '#dfb162', fontWeight: 600 } }, labels: { style: { colors: '#dfb162', fontWeight: 700 } } }
+            ],
+            grid: { borderColor: '#f0e6d8', strokeDashArray: 4 },
+            legend: { position: 'top', horizontalAlign: 'right', fontWeight: 600 }
+        }).render();
+    </script>
+</body>
+</html>
