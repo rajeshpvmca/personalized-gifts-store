@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>The Journal | Stackly Gifting Blog</title>
+    
+    <!-- Bootstrap 5.3.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body class="bg-light text-dark">
+
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <!-- 1. Hero Section -->
+    <section class="position-relative d-flex align-items-center justify-content-center overflow-hidden py-5" style="min-height: 90vh;">
+        <!-- Background Image with Zoom Animation -->
+        <div class="position-absolute top-0 start-0 w-100 h-100 z-n1">
+            <div class="bg-image w-100 h-100 hero-zoom-bg" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAww6mQG-eqhcyiey68nljAxZr3U27lajGjfL5_ns9af1JCsKNUTpxnr6_N49lpBrG-Q3QjPffgD847xR8_eO145hhdcXUuWJNDxpxfQccmZD06Ay6JS8f5l-YlYOnV56kjVR2TMUi3mjvgA1R-Q4woB6jWIO8v3wew3vV0dm19ryNGz-yOr5_1Jom64dOAjVMAREzdS1KJS-yeoirTXZwcjKtmQE-YKYwFXz51CWRmdUw_EV5YV6Im');"></div>
+            <!-- Premium Dark Emerald & Gold Gradient Overlay for high contrast -->
+            <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(6,78,59,0.7) 50%, rgba(0,0,0,0.8) 100%);"></div>
+        </div>
+        
+        <div class="container position-relative z-1 text-center px-3 px-sm-4 animate-spin-in mt-5 mt-md-0" style="text-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-10 col-lg-8" data-aos="fade-up" data-aos-duration="1200">
+                    <!-- Premium Badge -->
+                    <div class="mb-4">
+                        <span class="d-inline-flex align-items-center gap-2 rounded-pill px-2 py-1" style="background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(8px); border: 1px solid rgba(223, 177, 98, 0.4); box-shadow: 0 4px 15px rgba(0,0,0,0.3), inset 0 0 10px rgba(223, 177, 98, 0.1);">
+                            <span class="rounded-circle d-flex align-items-center justify-content-center" style="width: 28px; height: 28px; background: linear-gradient(45deg, #dfb162, #c18a39); color: #064e3b; box-shadow: 0 0 10px rgba(223, 177, 98, 0.5);">
+                                <span class="material-symbols-outlined" style="font-size: 16px;">edit_note</span>
+                            </span>
+                            <span class="fw-bold pe-2" style="color: #dfb162; letter-spacing: 2.5px; font-size: 0.75rem; text-transform: uppercase;">Editor's Feature</span>
+                        </span>
+                    </div>
+                    
+                    <!-- Main Heading with Responsive Sizing -->
+                    <h1 class="display-3 fw-bold mb-4 text-white lh-sm hero-heading-animated" style="font-size: clamp(2.5rem, 6vw, 4rem);">
+                        The Art of the <br class="d-none d-md-block"/>
+                        <span class="fst-italic text-gradient-gold position-relative d-inline-block">
+                            Unboxing
+                            <!-- Decorative Underline -->
+                            <svg class="position-absolute w-100 text-gold" style="bottom: -10px; left: 0; height: 12px; opacity: 0.7;" viewBox="0 0 200 9" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.00035 7.42211C54.453 1.54581 123.01 -1.4542 198.375 7.42211" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+                        </span>
+                    </h1>
+                    
+                    <!-- Description Text -->
+                    <p class="lead text-white opacity-75 mb-5 mx-auto fw-light" style="max-width: 650px; font-size: clamp(1rem, 4vw, 1.25rem); line-height: 1.8;">
+                        Discover the psychology behind the perfect reveal and how curated packaging creates memories that last long after the paper is recycled.
+                    </p>
+                    
+                    <!-- Call to Action Buttons -->
+                    <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-3 mt-4">
+                        <a href="#" class="btn btn-outline-light rounded-pill px-5 py-3 d-inline-flex align-items-center justify-content-center gap-2 fw-medium transition-lift w-100 w-sm-auto" style="border-width: 2px;">
+                            Read the Full Story
+                            <span class="material-symbols-outlined fs-5">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+    </section>
+
+    <main class="container py-5 mt-4">
+        
+        <!-- Main Content Area: Magazine Grid -->
+        <div class="row g-5">
+            
+            <!-- Left Column: Posts & Filters -->
+            <div class="col-12 col-lg-8">
+                
+                <!-- Section 2: Latest Posts with Filters -->
+                <section class="mb-5 pb-4">
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-4 gap-3" data-aos="fade-up">
+                        <div>
+                            <!-- Premium Badge -->
+                            <div class="mb-4">
+                                <span class="d-inline-flex align-items-center gap-2 rounded-pill px-3 py-2 shadow-sm" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border: 1px solid rgba(223, 177, 98, 0.3);">
+                                    <span class="rounded-circle d-flex align-items-center justify-content-center" style="width: 24px; height: 24px; background: linear-gradient(45deg, #dfb162, #c18a39); color: #fff;">
+                                        <span class="material-symbols-outlined" style="font-size: 14px;">article</span>
+                                    </span>
+                                    <span class="fw-bold pe-2" style="color: #064e3b; letter-spacing: 2px; font-size: 0.75rem; text-transform: uppercase;">Latest</span>
+                                </span>
+                            </div>
+                            <h2 class="display-6 fw-bold mb-1" style="font-family: serif;">The Latest Stories</h2>
+                            <p class="text-muted mb-0">Inspiration for every occasion, handcrafted for you.</p>
+                        </div>
+                        <div class="d-flex flex-wrap gap-2" id="filter-buttons">
+                            <button class="btn btn-primary-custom rounded-pill btn-sm px-3 filter-btn">All</button>
+                            <button class="btn btn-outline-secondary rounded-pill btn-sm px-3 filter-btn">Gift Guides</button>
+                            <button class="btn btn-outline-secondary rounded-pill btn-sm px-3 filter-btn">Trends</button>
+                            <button class="btn btn-outline-secondary rounded-pill btn-sm px-3 filter-btn">DIY</button>
+                        </div>
+                    </div>
+                    
+                    <div class="row g-4">
+                        <!-- Post 1 -->
+                        <div class="col-12 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                            <article class="blog-card h-100 d-flex flex-column text-decoration-none">
+                                <a href="#" class="d-block overflow-hidden border-radius-xl mb-3 aspect-4-3 bg-light transition-lift">
+                                    <img class="w-100 h-100 object-fit-cover" style="transition: transform 0.5s ease;" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATO6dPkksMVJYLle7lYmWCEF3t2VsvEax37OT1fuMewh37k_qrhQfaTDbbPE0Lv30xxdOGfkDhpBnGy57veZb4oolNfnw4TRYUzlZuKhj2v9_DpAB1Rmel8wn-ZFVn08RlrtCNEqQFyaAqWjiBZ_vv7s9SOn0wMTGD0fGIKMJvy4ZJeGNLl3gsLQs7ail1IK4yhfpNY4xswy4JeR66wNWK1xY4Ht8vrIiNFh2ZWxp1aH-0dGr07XTd" alt="Eco-Conscious Gifts"/>
+                                </a>
+                                <span class="text-primary-custom small fw-bold text-uppercase tracking-wider mb-2">GIFT GUIDES</span>
+                                <h3 class="h4 fw-bold mb-3 text-dark"><a href="#" class="text-dark text-decoration-none hover-primary">10 Eco-Conscious Gifts for the Mindful Soul</a></h3>
+                                <p class="text-muted mb-4 flex-grow-1">Sustainability doesn't have to sacrifice style. We've curated a list of stunning, earth-friendly finds that are as kind to the planet as they are beautiful.</p>
+                                <div class="d-flex align-items-center justify-content-between text-muted small border-top pt-3">
+                                    <span>5 min read</span>
+                                    <span>Oct 24, 2026</span>
+                                </div>
+                            </article>
+                        </div>
+                        
+                        <!-- Post 2 -->
+                        <div class="col-12 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                            <article class="blog-card h-100 d-flex flex-column text-decoration-none">
+                                <a href="#" class="d-block overflow-hidden border-radius-xl mb-3 aspect-4-3 bg-light transition-lift">
+                                    <img class="w-100 h-100 object-fit-cover" style="transition: transform 0.5s ease;" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOL753jxrQRzYGRQRRRiEBhdjSCTZj3-dPucUN5QmoTO09RdJoCzOnVEhRLOV-7ITfBWiCjyRfhAqdpfWFslDBmHrF3R5BDZsNVMG4sM2vCe4fg77iWmHRtSVCmNb8Vq7D8EnJciqENPOCIj12yrzxydm6glOhfymCD1JAuzC6XLmHcYqZwtDthCdYvgBH8uZDRY6263dohbrjZOzDoR6Tyokds-qD-NWivjJartEiRZ-p9pePzAuM" alt="Mastering Velvet Ribbon"/>
+                                </a>
+                                <span class="text-primary-custom small fw-bold text-uppercase tracking-wider mb-2">DIY</span>
+                                <h3 class="h4 fw-bold mb-3 text-dark"><a href="#" class="text-dark text-decoration-none hover-primary">The Perfect Knot: Mastering the Velvet Ribbon</a></h3>
+                                <p class="text-muted mb-4 flex-grow-1">Elevate your presentation with our step-by-step guide to achieving the classic French bow using high-quality silk and velvet textures.</p>
+                                <div class="d-flex align-items-center justify-content-between text-muted small border-top pt-3">
+                                    <span>8 min read</span>
+                                    <span>Oct 19, 2026</span>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 3: Gift Giver's Guide Recurring Column -->
+                <section class="mb-5 pb-4" data-aos="fade-up">
+                    <div class="bg-primary-custom text-white border-radius-xl p-4 p-md-5 position-relative overflow-hidden shadow-lg transition-lift">
+                        <div class="position-absolute end-0 top-0 h-100 opacity-10 pe-none d-flex align-items-center">
+                            <span class="material-symbols-outlined" style="font-size: 200px; line-height: 1;">redeem</span>
+                        </div>
+                        <div class="position-relative z-1" style="max-width: 600px;">
+                            <!-- Premium Badge Dark -->
+                            <div class="mb-4">
+                                <span class="d-inline-flex align-items-center gap-2 rounded-pill px-3 py-2 shadow-sm" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); border: 1px solid rgba(223, 177, 98, 0.4);">
+                                    <span class="rounded-circle d-flex align-items-center justify-content-center" style="width: 24px; height: 24px; background: linear-gradient(45deg, #dfb162, #c18a39); color: #064e3b;">
+                                        <span class="material-symbols-outlined" style="font-size: 14px;">calendar_month</span>
+                                    </span>
+                                    <span class="fw-bold pe-2" style="color: #dfb162; letter-spacing: 2px; font-size: 0.75rem; text-transform: uppercase;">Monthly Column</span>
+                                </span>
+                            </div>
+                            <h2 class="display-6 fw-bold mb-4" style="font-family: serif;">The Gift Giver's Etiquette: Navigating Life's Milestones</h2>
+                            <p class="lead fst-italic mb-4">"A gift is a silent conversation between two souls. Knowing when to speak and when to listen is the secret to true curation."</p>
+                            
+                            <div class="d-flex align-items-center gap-3 mb-4">
+                                <img class="rounded-circle border border-2 border-light object-fit-cover" style="width: 60px; height: 60px;" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnjzOisGnDK0xfI_bOve2WW31WYcJQj1_s1_tuImoWPqXUJOYO11hv3nhaoRZ89A142v1xZu0g2VUERwEXTsclYev35XBW9ljraYcBQg3SnCnl8-z2tebXkZ2uAeTUVD01BRiwIZz9MEA4jUwadarXe4dzwx6SgTH6-hLR5Rq0l7H7ZAvvJjiwqeiYYnIjs_ms6L8U7HB4VvxtiIbNFsN8qnMmHycVX9zoT38m-itooLKMndSoILPI" alt="Eleanor Vane"/>
+                                <div>
+                                    <p class="fw-bold mb-0">Eleanor Vane</p>
+                                    <p class="small text-white-50 mb-0">Lead Curator, Stackly</p>
+                                </div>
+                            </div>
+                            
+                            <a class="text-white fw-bold border-bottom border-light text-decoration-none d-inline-flex align-items-center gap-2 pb-1 hover-opacity" href="#">
+                                Read this month's column
+                                <span class="material-symbols-outlined fs-6">north_east</span>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 7: Archive/Pagination -->
+                <div class="d-flex justify-content-center align-items-center gap-2 mt-5">
+                    <button class="btn btn-outline-secondary rounded-circle p-2 d-flex align-items-center justify-content-center"><span class="material-symbols-outlined">chevron_left</span></button>
+                    <button class="btn btn-primary-custom rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">1</button>
+                    <button class="btn btn-outline-secondary rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">2</button>
+                    <button class="btn btn-outline-secondary rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">3</button>
+                    <span class="text-muted px-2">...</span>
+                    <button class="btn btn-outline-secondary rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">12</button>
+                    <button class="btn btn-outline-secondary rounded-circle p-2 d-flex align-items-center justify-content-center"><span class="material-symbols-outlined">chevron_right</span></button>
+                </div>
+            </div>
+
+            <!-- Right Column: Sidebar -->
+            <aside class="col-12 col-lg-4">
+                
+                <!-- Section 4: Editor's Picks Sidebar -->
+                <div class="bg-white rounded-4 p-4 p-md-5 mb-4 shadow-sm border" data-aos="fade-left">
+                    <!-- Premium Badge -->
+                    <div class="mb-4">
+                        <span class="d-inline-flex align-items-center gap-2 rounded-pill px-3 py-2 shadow-sm" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border: 1px solid rgba(223, 177, 98, 0.3);">
+                            <span class="rounded-circle d-flex align-items-center justify-content-center" style="width: 24px; height: 24px; background: linear-gradient(45deg, #dfb162, #c18a39); color: #fff;">
+                                <span class="material-symbols-outlined" style="font-size: 14px;">star</span>
+                            </span>
+                            <span class="fw-bold pe-2" style="color: #064e3b; letter-spacing: 2px; font-size: 0.75rem; text-transform: uppercase;">Favorites</span>
+                        </span>
+                    </div>
+                    <h3 class="h4 fw-bold mb-4 text-primary-custom" style="font-family: serif;">Editor's Picks</h3>
+                    <div class="d-flex flex-column gap-4">
+                        <a href="#" class="d-flex gap-3 text-decoration-none group blog-card">
+                            <div class="rounded overflow-hidden flex-shrink-0" style="width: 80px; height: 80px;">
+                                <img class="w-100 h-100 object-fit-cover" style="transition: transform 0.3s ease;" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDe2UU0tjjHrkeRXsy2OjZmORMFE6h9qQhavjQQWfF6OUDzCb0SCobwuPy6ky0Bl2XtREnLThMpy_yi2TE-wJQSCwL-4eH47U62nKffNCvo1Za5YgLW__cc_uBpcFtgfc2QH-9_F2n_D0n9CHr2xLkqkB52LVD0UvtfCHoONyQ1ub1Cc79Hy696mk09rJ3FdnyWjxXjL53SAwQetkVyT40iZoPvfIfAR9XpI9OWuqmJ6ZetfzB-zpA" alt="Pick 1"/>
+                            </div>
+                            <div>
+                                <h4 class="h6 fw-bold text-dark mb-1 lh-sm group-hover:text-primary">The Desk Collection: Tools for Creative Minds</h4>
+                                <p class="small text-primary-custom mb-0 text-uppercase tracking-wider">GIFT GUIDES</p>
+                            </div>
+                        </a>
+                        <a href="#" class="d-flex gap-3 text-decoration-none group blog-card">
+                            <div class="rounded overflow-hidden flex-shrink-0" style="width: 80px; height: 80px;">
+                                <img class="w-100 h-100 object-fit-cover" style="transition: transform 0.3s ease;" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm_MIzH253THpgYFprJ1sDUReYsOxpp3-Fr2w0re0tzk6EOlgUd7DuiOxeUJymrjoXIoGka06P83EffaHlXURDwKu7G3hqY3JWnQa6iQv6upsyEbzA01mv623NIDSGSzhbgo98f2vkSqmj2k3Xo28tghRbRb4zWMTddQegl1f3ezyqBQilCf5E6Y1xSVtHLWQ7MH85IZJvEbJnL3HTVhF2JlynItnPDL0iQAcpdjVGFMqFqRrrRA9m" alt="Pick 2"/>
+                            </div>
+                            <div>
+                                <h4 class="h6 fw-bold text-dark mb-1 lh-sm group-hover:text-primary">Botanical Self-Care: Sunday Morning Rituals</h4>
+                                <p class="small text-primary-custom mb-0 text-uppercase tracking-wider">TRENDS</p>
+                            </div>
+                        </a>
+                        <a href="#" class="d-flex gap-3 text-decoration-none group blog-card">
+                            <div class="rounded overflow-hidden flex-shrink-0" style="width: 80px; height: 80px;">
+                                <img class="w-100 h-100 object-fit-cover" style="transition: transform 0.3s ease;" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKRIG1jzVpDgnnfj0IH1UhPQCJabS47EqiHDkLF5DiLYYTWmzkdAifJHVBlnzhy3qkXbNo4-2-GZlfZQXTHPERNs-idNxpkCRApaD9MK-2dxY1oNUBVrULVwakTjGmq-prTqBxnEMa9cXNVlFDjfkopf3Wmx4F-aLxEbRQvghjRNDo2nKVbpDCr4CMdp8jh0_wNeR1GiUOtqZ9TuLXkIYv0z62yRwkLCTsjdOgYTilB5RxM02NWtX2" alt="Pick 3"/>
+                            </div>
+                            <div>
+                                <h4 class="h6 fw-bold text-dark mb-1 lh-sm group-hover:text-primary">Entertaining at Home: The Autumn Dinner Party</h4>
+                                <p class="small text-primary-custom mb-0 text-uppercase tracking-wider">TRENDS</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Section 5: Popular Tags Cloud -->
+                <div class="bg-white rounded-4 p-4 p-md-5 mb-4 shadow-sm border" data-aos="fade-left" data-aos-delay="100">
+                    <!-- Premium Badge -->
+                    <div class="mb-4">
+                        <span class="d-inline-flex align-items-center gap-2 rounded-pill px-3 py-2 shadow-sm" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border: 1px solid rgba(223, 177, 98, 0.3);">
+                            <span class="rounded-circle d-flex align-items-center justify-content-center" style="width: 24px; height: 24px; background: linear-gradient(45deg, #dfb162, #c18a39); color: #fff;">
+                                <span class="material-symbols-outlined" style="font-size: 14px;">tag</span>
+                            </span>
+                            <span class="fw-bold pe-2" style="color: #064e3b; letter-spacing: 2px; font-size: 0.75rem; text-transform: uppercase;">Tags</span>
+                        </span>
+                    </div>
+                    <h3 class="h4 fw-bold mb-4" style="font-family: serif;">Explore by Theme</h3>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a class="badge bg-light text-dark border text-decoration-none p-2 hover-bg-primary transition-all fw-normal" href="#">#SustainableLiving</a>
+                        <a class="badge bg-light text-dark border text-decoration-none p-2 hover-bg-primary transition-all fw-normal" href="#">#AnniversaryGifts</a>
+                        <a class="badge bg-light text-dark border text-decoration-none p-2 hover-bg-primary transition-all fw-normal" href="#">#HomeDecor</a>
+                        <a class="badge bg-light text-dark border text-decoration-none p-2 hover-bg-primary transition-all fw-normal" href="#">#ArtisanMade</a>
+                        <a class="badge bg-light text-dark border text-decoration-none p-2 hover-bg-primary transition-all fw-normal" href="#">#GiftEtiquette</a>
+                        <a class="badge bg-light text-dark border text-decoration-none p-2 hover-bg-primary transition-all fw-normal" href="#">#LuxuryPaper</a>
+                        <a class="badge bg-light text-dark border text-decoration-none p-2 hover-bg-primary transition-all fw-normal" href="#">#Minimalism</a>
+                    </div>
+                </div>
+
+                <!-- Section 8: Social Sharing Callout -->
+                <div class="bg-white rounded-4 p-4 p-md-5 text-center shadow-sm border border-primary border-opacity-25" data-aos="fade-left" data-aos-delay="200">
+                    <!-- Premium Badge -->
+                    <div class="mb-4">
+                        <span class="d-inline-flex align-items-center gap-2 rounded-pill px-3 py-2 shadow-sm" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border: 1px solid rgba(223, 177, 98, 0.3);">
+                            <span class="rounded-circle d-flex align-items-center justify-content-center" style="width: 24px; height: 24px; background: linear-gradient(45deg, #dfb162, #c18a39); color: #fff;">
+                                <span class="material-symbols-outlined" style="font-size: 14px;">group</span>
+                            </span>
+                            <span class="fw-bold pe-2" style="color: #064e3b; letter-spacing: 2px; font-size: 0.75rem; text-transform: uppercase;">Socials</span>
+                        </span>
+                    </div>
+                    <h4 class="h4 fw-bold text-primary-custom mb-2" style="font-family: serif;">Join the Community</h4>
+                    <p class="text-muted small mb-4">Share your curated moments with us on social media.</p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a class="btn btn-outline-secondary rounded-circle p-2 d-flex align-items-center justify-content-center text-primary-custom hover-bg-primary" href="#">
+                            <span class="material-symbols-outlined fs-5">public</span>
+                        </a>
+                        <a class="btn btn-outline-secondary rounded-circle p-2 d-flex align-items-center justify-content-center text-primary-custom hover-bg-primary" href="#">
+                            <span class="material-symbols-outlined fs-5">camera</span>
+                        </a>
+                        <a class="btn btn-outline-secondary rounded-circle p-2 d-flex align-items-center justify-content-center text-primary-custom hover-bg-primary" href="#">
+                            <span class="material-symbols-outlined fs-5">share</span>
+                        </a>
+                    </div>
+                    <p class="mt-4 small fw-bold text-muted mb-0">@CurationAndCo #ThoughtfulGifting</p>
+                </div>
+                
+            </aside>
+        </div>
+        
+        <!-- Section 6: Newsletter Banner -->
+        <section class="mt-5 pt-4" data-aos="fade-up">
+            <div class="row g-0 bg-dark text-white rounded-4 overflow-hidden shadow-lg transition-lift">
+                <div class="col-12 col-md-6 p-4 p-md-5 d-flex flex-column justify-content-center">
+                    <!-- Premium Badge Dark -->
+                    <div class="mb-4">
+                        <span class="d-inline-flex align-items-center gap-2 rounded-pill px-3 py-2 shadow-sm" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); border: 1px solid rgba(223, 177, 98, 0.4);">
+                            <span class="rounded-circle d-flex align-items-center justify-content-center" style="width: 24px; height: 24px; background: linear-gradient(45deg, #dfb162, #c18a39); color: #064e3b;">
+                                <span class="material-symbols-outlined" style="font-size: 14px;">mail</span>
+                            </span>
+                            <span class="fw-bold pe-2" style="color: #dfb162; letter-spacing: 2px; font-size: 0.75rem; text-transform: uppercase;">Newsletter</span>
+                        </span>
+                    </div>
+                    <h2 class="display-6 fw-bold mb-3" style="font-family: serif;">Delivered to Your Inbox</h2>
+                    <p class="lead opacity-75 mb-4">Get first access to exclusive curated collections, gifting trends, and artisan stories once a week.</p>
+                    <form class="d-flex flex-column gap-3 w-100">
+                        <input class="form-control form-control-lg bg-white bg-opacity-10 border-light text-white placeholder-white" placeholder="Email Address" type="email" required style="color: white !important;"/>
+                        <button class="btn btn-lg fw-bold glow-shadow transition-lift w-100 rounded-3 text-dark py-3" style="background: linear-gradient(45deg, #dfb162, #c18a39); border: none;" type="submit">Subscribe</button>
+                    </form>
+                    <p class="small opacity-50 mt-3 mb-0 text-center text-sm-start">By subscribing, you agree to our Privacy Policy. No spam, just inspiration.</p>
+                </div>
+                <div class="col-12 col-md-6 d-none d-md-block position-relative">
+                    <div class="bg-image w-100 h-100 position-absolute" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCN7lbIO-5AY3drJrjfPXvsOsBjH2dLS8diz6OJRPA7DzWoF6E6x4Q8vhK7Q5lQLL-cUI2TpQZpa9I7k-cN-cjESfw9Lxqc-Y33c6mAslcJ6QOOZmw9QrSKJqJNvIH7P2ZdQraJ_AgZfm-sUfBlzmvUETVFE3E9pdttojyOqROv8Kozf-8KesfEJHKlRwlflKlMUs992miFtvRloM8m0AkfjsUmBINqhZH8ajCFQ1imxrp6GiF2cY1R');"></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Bootstrap 5.3.3 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmxc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Main JS -->
+    <script src="js/main.js"></script>
+
+    <script>
+        // Simple filter interaction logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterButtons = document.querySelectorAll('#filter-buttons .filter-btn');
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterButtons.forEach(b => {
+                        b.classList.remove('btn-primary-custom');
+                        b.classList.add('btn-outline-secondary');
+                    });
+                    btn.classList.add('btn-primary-custom');
+                    btn.classList.remove('btn-outline-secondary');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Customer Reviews | Stackly</title>
+    
+    <!-- Bootstrap 5.3.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body class="bg-light text-dark font-body-md">
+
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <main>
+        <!-- 1. Hero Section -->
+        <section class="position-relative d-flex align-items-center justify-content-center overflow-hidden py-5" style="min-height: 90vh;">
+            <!-- Background Image with Zoom Animation -->
+            <div class="position-absolute top-0 start-0 w-100 h-100 z-n1">
+                <div class="bg-image w-100 h-100 hero-zoom-bg" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCPpVIfvYJTePyOBmV2CX3dn0GN9o_GrF0BXD2F1nfqr913ljNJnhxaPPbSccpZZRPacArBi-DK_xfPdJCyays8wpa5IBbvlippzuxnxcXAqmWDnOiyYLifLR8jupJmNdOPIudjj3snpISsqW_eJX_2ipTUR5usPqCtR920bEMhSiSHbz-lGGg4HL-ZWjTRx1wfRtE7eP8XFVmBix0NvKpzFu6BjLKIwL02iFqlDhiWgaeQ64q37kBO');"></div>
+                <!-- Premium Dark Emerald & Gold Gradient Overlay for high contrast -->
+                <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(6,78,59,0.7) 50%, rgba(0,0,0,0.8) 100%);"></div>
+            </div>
+            
+            <div class="container position-relative z-1 text-center px-3 px-sm-4 animate-spin-in mt-5 mt-md-0" style="text-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-10 col-lg-8" data-aos="fade-up" data-aos-duration="1200">
+                        <!-- Premium Badge -->
+                        <div class="mb-4">
+                            <span class="d-inline-flex align-items-center gap-2 rounded-pill px-2 py-1" style="background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(8px); border: 1px solid rgba(223, 177, 98, 0.4); box-shadow: 0 4px 15px rgba(0,0,0,0.3), inset 0 0 10px rgba(223, 177, 98, 0.1);">
+                                <span class="rounded-circle d-flex align-items-center justify-content-center" style="width: 28px; height: 28px; background: linear-gradient(45deg, #dfb162, #c18a39); color: #064e3b; box-shadow: 0 0 10px rgba(223, 177, 98, 0.5);">
+                                    <span class="material-symbols-outlined" style="font-size: 16px;">favorite</span>
+                                </span>
+                                <span class="fw-bold pe-2" style="color: #dfb162; letter-spacing: 2.5px; font-size: 0.75rem; text-transform: uppercase;">OUR COMMUNITY</span>
+                            </span>
+                        </div>
+                        
+                        <!-- Main Heading with Responsive Sizing -->
+                        <h1 class="display-3 fw-bold mb-4 text-white lh-sm hero-heading-animated" style="font-size: clamp(2rem, 5vw, 4rem);">
+                            Loved by Our <br class="d-none d-md-block"/>
+                            <span class="fst-italic text-gradient-gold position-relative d-inline-block">
+                                Community
+                                <!-- Decorative Underline -->
+                                <svg class="position-absolute w-100 text-gold" style="bottom: -10px; left: 0; height: 12px; opacity: 0.7;" viewBox="0 0 200 9" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.00035 7.42211C54.453 1.54581 123.01 -1.4542 198.375 7.42211" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+                            </span>
+                        </h1>
+                        
+                        <!-- Description Text -->
+                        <p class="lead text-white opacity-75 mb-5 mx-auto fw-light" style="max-width: 650px; font-size: clamp(1rem, 4vw, 1.25rem); line-height: 1.8;">
+                            Real stories from real people. Discover how Stackly helps celebrate life's most meaningful milestones through the art of thoughtful gifting.
+                        </p>
+                        
+                        <!-- Call to Action Buttons -->
+                        <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-3 mt-4">
+                            <a href="#share-story" class="btn btn-outline-light rounded-pill px-5 py-3 d-inline-flex align-items-center justify-content-center gap-2 fw-medium transition-lift w-100 w-sm-auto" style="border-width: 2px;">
+                                Share Your Story
+                                <span class="material-symbols-outlined fs-5">arrow_forward</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Star Rating & Overview -->
+        <section class="py-5 bg-white border-top border-bottom" data-aos="fade-up" data-aos-delay="100">
+            <div class="container">
+                <div class="row g-5 align-items-center justify-content-center">
+                    <div class="col-12 col-md-4 text-center text-md-start border-md-end">
+                        <h2 class="display-4 fw-bold mb-2">4.9 <span class="fs-4 text-muted fw-normal">/ 5.0</span></h2>
+                        <div class="d-flex justify-content-center justify-content-md-start gap-1 mb-2 text-primary-custom">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star_half</span>
+                        </div>
+                        <p class="text-muted mb-0 small fw-bold text-uppercase tracking-wider">Based on 12,480+ reviews</p>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-5">
+                        <div class="d-flex align-items-center gap-3 mb-2">
+                            <span class="small fw-bold text-muted" style="width: 45px;">5 Star</span>
+                            <div class="progress flex-grow-1" style="height: 8px;">
+                                <div class="progress-bar bg-primary-custom" role="progressbar" style="width: 92%" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <span class="small fw-bold text-muted" style="width: 40px; text-align: right;">92%</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-3 mb-2">
+                            <span class="small fw-bold text-muted" style="width: 45px;">4 Star</span>
+                            <div class="progress flex-grow-1" style="height: 8px;">
+                                <div class="progress-bar bg-primary-custom" role="progressbar" style="width: 6%" aria-valuenow="6" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <span class="small fw-bold text-muted" style="width: 40px; text-align: right;">6%</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <span class="small fw-bold text-muted opacity-50" style="width: 45px;">3 Star</span>
+                            <div class="progress flex-grow-1" style="height: 8px;">
+                                <div class="progress-bar bg-primary-custom opacity-50" role="progressbar" style="width: 1%" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <span class="small fw-bold text-muted opacity-50" style="width: 40px; text-align: right;">1%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Customer Photo Gallery (Bento Layout) -->
+        <section class="py-5 my-md-4">
+            <div class="container">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-4 pb-2" data-aos="fade-up">
+                    <div>
+                        <!-- Premium Badge -->
+                        <div class="mb-4">
+                            <span class="d-inline-flex align-items-center gap-2 rounded-pill px-3 py-2 shadow-sm" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border: 1px solid rgba(223, 177, 98, 0.3);">
+                                <span class="rounded-circle d-flex align-items-center justify-content-center" style="width: 24px; height: 24px; background: linear-gradient(45deg, #dfb162, #c18a39); color: #fff;">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">photo_camera</span>
+                                </span>
+                                <span class="fw-bold pe-2" style="color: #064e3b; letter-spacing: 2px; font-size: 0.75rem; text-transform: uppercase;">Gallery</span>
+                            </span>
+                        </div>
+                        <h2 class="display-6 fw-bold mb-2" style="font-family: serif;">Curation in the Wild</h2>
+                        <p class="text-muted mb-0">Real moments captured by our customers</p>
+                    </div>
+                    <button class="btn btn-outline-dark rounded-pill mt-3 mt-md-0 w-100 w-md-auto transition-lift" style="border-width: 2px;">View All Photos</button>
+                </div>
+                
+                <div class="row g-3">
+                    <!-- Large Image Left -->
+                    <div class="col-12 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="position-relative overflow-hidden rounded-4 handcrafted-shadow group h-100" style="min-height: 400px;">
+                            <img class="position-absolute w-100 h-100 object-fit-cover transition-transform-slow group-hover-scale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIrXrvAZcGo7JSouVxJguhIa8e1LyWptFQ3_ZfUDGCDL5a2v0upnL_weeToHGD-IF8akBu3xaeQVGCJKJnJ2HETQPSwAM10PjGKC6eCO7DOduIXehey1_6MKgJ1FrFStZH_ErqNtLfeE2GczqmktUmXLksqenzNpMemqd91f1UtzxhouK8Z0JNm09o6N9etxqogvvKtMxaUZIejjfe14kQMz-EZJ5luNcL6g-t7tShEIBjGbel7IBn" alt="Customer Photo 1"/>
+                            <div class="position-absolute inset-0 bg-dark bg-opacity-25 transition-opacity hover-opacity-0"></div>
+                            <div class="position-absolute bottom-0 start-0 p-4 text-white">
+                                <p class="small fw-bold mb-0 opacity-75 text-shadow">Sarah J. — Anniversary Gift</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Grid -->
+                    <div class="col-12 col-md-6">
+                        <div class="row g-3 h-100">
+                            <!-- Top Right Wide Image -->
+                            <div class="col-12 h-50" data-aos="zoom-in" data-aos-delay="200" style="min-height: 200px;">
+                                <div class="position-relative overflow-hidden rounded-4 handcrafted-shadow h-100 group">
+                                    <img class="position-absolute w-100 h-100 object-fit-cover transition-transform-slow group-hover-scale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0VLiGBoYoBXYrgsysh3Nw4-1KZ2D-J1-YXQGagULhwGDrDKRY7HkWJEAAf_iI27agAmYjIyl9lsgr2RCUn_RxpHVQe_cwOYlnuYcTntUF1B_7AxmRPrXb3AaIl_wQitW5Co4gkYfIBOWfzSS0_rLK3hb8OhIrAEsZ1dkx4qDwzcXZxQeMWPLBhg-QQVaWGWvwOw2_nsmuOCTt4819GNV5BuuHa_63SpLvkS5i0WsQlkpY26QsvOGo" alt="Customer Photo 2"/>
+                                </div>
+                            </div>
+                            
+                            <!-- Bottom Right Split Images -->
+                            <div class="col-6 h-50" data-aos="zoom-in" data-aos-delay="300" style="min-height: 200px;">
+                                <div class="position-relative overflow-hidden rounded-4 handcrafted-shadow h-100 group">
+                                    <img class="position-absolute w-100 h-100 object-fit-cover transition-transform-slow group-hover-scale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkC1Fy9A9fyS0s3WOitfqZxj9rUVV5gPlbAbJpZI_ETeMKLg5QHwulLedXe_b5HfKrMo0n7DGzQrGpsyl0MfLVXEwlS1qYoiw7uwcCa3rM_R3tELgagn3paqOf0E3fnLVCLCUTCbY_wHqELIkrkSWz89wC8nRlcnau0w9M705xKAOewNqon0KtDLEdhUZjkIYuP7Sk5Gnj-d02t-vSmNoYq8iRfow9ZNKfn57FcjyryuHADfQv-PCc" alt="Customer Photo 3"/>
+                                </div>
+                            </div>
+                            <div class="col-6 h-50" data-aos="zoom-in" data-aos-delay="400" style="min-height: 200px;">
+                                <div class="position-relative overflow-hidden rounded-4 handcrafted-shadow h-100 group">
+                                    <img class="position-absolute w-100 h-100 object-fit-cover transition-transform-slow group-hover-scale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwu0KPuijhhPJQgAqKUDcx3_WkopNUYC3jVBUOKBasmzbAtPV5mZ2xObtbRvccKAY5h6WV0D720JMp64BAR63WZm6DK3LXz1mc_vzQSoZckMdAiUbsw9U4s5xjPpGevYPhGBq6d-s0DauxJXKTJ7-TUdM3U8EQg-_bSQF4LwQ7tlTnDF75NsVTEBRQkP1bX-ThloN15HudmTXfcqgOp76Djbs977tMOWdvQYtHuDt_Y_VbQI8wQAlS" alt="Customer Photo 4"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Verified Purchase Stories -->
+        <section class="py-5 bg-white border-top border-bottom">
+            <div class="container py-md-4">
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <!-- Premium Badge -->
+                    <div class="mb-4">
+                        <span class="d-inline-flex align-items-center gap-2 rounded-pill px-3 py-2 shadow-sm" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border: 1px solid rgba(223, 177, 98, 0.3);">
+                            <span class="rounded-circle d-flex align-items-center justify-content-center" style="width: 24px; height: 24px; background: linear-gradient(45deg, #dfb162, #c18a39); color: #fff;">
+                                <span class="material-symbols-outlined" style="font-size: 14px;">verified</span>
+                            </span>
+                            <span class="fw-bold pe-2" style="color: #064e3b; letter-spacing: 2px; font-size: 0.75rem; text-transform: uppercase;">Testimonials</span>
+                        </span>
+                    </div>
+                    <h2 class="display-5 fw-bold text-dark mb-4" style="font-family: serif;">Verified Stories</h2>
+                </div>
+                <div class="row g-4">
+                    <!-- Story 1 -->
+                    <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="bg-light p-4 p-md-5 rounded-4 handcrafted-shadow h-100 d-flex flex-column">
+                            <div class="d-flex gap-1 mb-3 text-primary-custom">
+                                <span class="material-symbols-outlined fs-6" style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined fs-6" style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined fs-6" style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined fs-6" style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined fs-6" style="font-variation-settings: 'FILL' 1;">star</span>
+                            </div>
+                            <p class="fst-italic flex-grow-1 text-dark">"The attention to detail in the packaging was simply breathtaking. It felt like I was sending a piece of my heart across the miles."</p>
+                            <div class="d-flex align-items-center gap-3 mt-4 pt-3 border-top border-secondary border-opacity-25">
+                                <div class="rounded-circle bg-primary-custom text-white d-flex align-items-center justify-content-center fw-bold" style="width: 40px; height: 40px;">M</div>
+                                <div>
+                                    <p class="fw-bold mb-0 small">Michael R.</p>
+                                    <p class="small text-success mb-0 d-flex align-items-center gap-1">
+                                        <span class="material-symbols-outlined" style="font-size: 14px;">verified</span> Verified Buyer
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Story 2 -->
+                    <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="bg-light p-4 p-md-5 rounded-4 handcrafted-shadow h-100 d-flex flex-column">
+                            <div class="d-flex gap-1 mb-3 text-primary-custom">
+                                <span class="material-symbols-outlined fs-6" style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined fs-6" style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined fs-6" style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined fs-6" style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined fs-6" style="font-variation-settings: 'FILL' 1;">star</span>
+                            </div>
+                            <p class="fst-italic flex-grow-1 text-dark">"I used them for our wedding party gifts and everyone was so impressed. The Sage Green and Terracotta theme perfectly matched our decor!"</p>
+                            <div class="d-flex align-items-center gap-3 mt-4 pt-3 border-top border-secondary border-opacity-25">
+                                <div class="rounded-circle bg-secondary-custom text-white d-flex align-items-center justify-content-center fw-bold" style="width: 40px; height: 40px;">E</div>
+                                <div>
+                                    <p class="fw-bold mb-0 small">Elena G.</p>
+                                    <p class="small text-success mb-0 d-flex align-items-center gap-1">
+                                        <span class="material-symbols-outlined" style="font-size: 14px;">verified</span> Verified Buyer
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Story 3 -->
+                    <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="bg-light p-4 p-md-5 rounded-4 handcrafted-shadow h-100 d-flex flex-column">
+                            <div class="d-flex gap-1 mb-3 text-primary-custom">
+                                <span class="material-symbols-outlined fs-6" style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined fs-6" style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined fs-6" style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined fs-6" style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined fs-6" style="font-variation-settings: 'FILL' 1;">star</span>
+                            </div>
+                            <p class="fst-italic flex-grow-1 text-dark">"Fast shipping and amazing customer support. They went above and beyond to personalize the note exactly how I wanted it."</p>
+                            <div class="d-flex align-items-center gap-3 mt-4 pt-3 border-top border-secondary border-opacity-25">
+                                <div class="rounded-circle text-white d-flex align-items-center justify-content-center fw-bold" style="width: 40px; height: 40px; background-color: #8c7366;">D</div>
+                                <div>
+                                    <p class="fw-bold mb-0 small">David W.</p>
+                                    <p class="small text-success mb-0 d-flex align-items-center gap-1">
+                                        <span class="material-symbols-outlined" style="font-size: 14px;">verified</span> Verified Buyer
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Top-Rated Products Spotlight -->
+        <section class="py-5 overflow-hidden">
+            <div class="container py-md-4">
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <!-- Premium Badge -->
+                    <div class="mb-4">
+                        <span class="d-inline-flex align-items-center gap-2 rounded-pill px-3 py-2 shadow-sm" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border: 1px solid rgba(223, 177, 98, 0.3);">
+                            <span class="rounded-circle d-flex align-items-center justify-content-center" style="width: 24px; height: 24px; background: linear-gradient(45deg, #dfb162, #c18a39); color: #fff;">
+                                <span class="material-symbols-outlined" style="font-size: 14px;">favorite</span>
+                            </span>
+                            <span class="fw-bold pe-2" style="color: #064e3b; letter-spacing: 2px; font-size: 0.75rem; text-transform: uppercase;">Most Loved</span>
+                        </span>
+                    </div>
+                    <h2 class="display-6 fw-bold text-dark" style="font-family: serif;">Community Favorites</h2>
+                </div>
+                
+                <div class="row g-4 justify-content-center text-start">
+                    
+                    <!-- Product 1 -->
+                    <div class="col-12 col-md-6 col-lg-4 group" data-aos="fade-up" data-aos-delay="100">
+                        <div class="position-relative overflow-hidden rounded-4 handcrafted-shadow mb-3" style="height: 380px;">
+                            <img class="w-100 h-100 object-fit-cover transition-transform-slow group-hover-scale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyhss4xMCrzb0ZBEIzABo6kF4kdgzRlR2D6dMA8lhYwjSuphHGME5H6__25UKXuBcb_tQFJZvYcnid3ryc8kPRgelPrsJXxod04MWkIeBAf2cq959msOhX0Vdl_5eCUtB5zbhrQjkwzn_LTwEeFtWezgi2CzJZ8OQplJj56ChUMqaldGCEji-dprmqeTNQ9H-d3UyiBXM_zsnL4LL8dXS7h8XXoaZ7j7_n8aO1kvgm_PoDWUlnCwv7" alt="The Sanctuary Box"/>
+                            <div class="position-absolute top-0 end-0 m-3 bg-white bg-opacity-75 backdrop-blur-sm px-2 py-1 rounded-pill d-flex align-items-center gap-1 shadow-sm">
+                                <span class="material-symbols-outlined text-primary-custom fs-6" style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="small fw-bold">4.9</span>
+                            </div>
+                        </div>
+                        <h3 class="h5 fw-bold mb-1 hover-primary cursor-pointer transition-colors">The Sanctuary Box</h3>
+                        <p class="text-muted fw-bold">$85.00</p>
+                    </div>
+                    
+                    <!-- Product 2 -->
+                    <div class="col-12 col-md-6 col-lg-4 group" data-aos="fade-up" data-aos-delay="200">
+                        <div class="position-relative overflow-hidden rounded-4 handcrafted-shadow mb-3" style="height: 380px;">
+                            <img class="w-100 h-100 object-fit-cover transition-transform-slow group-hover-scale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvDCVqB5jwNws41_CxxFMd3_Hco1u-RYoBOek1eZBtRQzuQEgDxve8Ge2WQ4ZLzOTUZJQ0ns-iGnZsVESxRwg_yzJH4TpHByeHFf0Vu7QA00XSQYHKK3S3I-XTok6yjB10tVgAbenofd1QnT3Sw1C8JupygZec2Ol-gQs582ooJbFd77WlKo0A7I0Y09bBNh-RdTLMhHm7TxcXCEz6dOh67qodxEXXN070jhAuFWr0gpYMP0Z7rb8Z" alt="Executive Tech Set"/>
+                            <div class="position-absolute top-0 end-0 m-3 bg-white bg-opacity-75 backdrop-blur-sm px-2 py-1 rounded-pill d-flex align-items-center gap-1 shadow-sm">
+                                <span class="material-symbols-outlined text-primary-custom fs-6" style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="small fw-bold">5.0</span>
+                            </div>
+                        </div>
+                        <h3 class="h5 fw-bold mb-1 hover-primary cursor-pointer transition-colors">Executive Tech Set</h3>
+                        <p class="text-muted fw-bold">$120.00</p>
+                    </div>
+                    
+                    <!-- Product 3 -->
+                    <div class="col-12 col-md-6 col-lg-4 group" data-aos="fade-up" data-aos-delay="300">
+                        <div class="position-relative overflow-hidden rounded-4 handcrafted-shadow mb-3" style="height: 380px;">
+                            <img class="w-100 h-100 object-fit-cover transition-transform-slow group-hover-scale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyP37y0VmCrU6dhofXc-5PkqHo2-VquGLwOZmasQqU2yxQSUcbw7B3GvnUfMCFtjUEk_KCdMJAb8blYNjFxcyDosTaA2wVa1tTC5yEXXWGBWGC4h9ncPeEgIpHlmxTLLl0EfI4wwlNfqywk4wBmv4yWQZr4nzB1iWoRYQMiDTNGOwepHVqhdebSdQVbjq07LIjkpOmWPb9tePR52sIyPMNbDpDXT-E-acfglrOLqzg1O8YE3m5MPOR" alt="Garden Picnic Hamper"/>
+                            <div class="position-absolute top-0 end-0 m-3 bg-white bg-opacity-75 backdrop-blur-sm px-2 py-1 rounded-pill d-flex align-items-center gap-1 shadow-sm">
+                                <span class="material-symbols-outlined text-primary-custom fs-6" style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="small fw-bold">4.8</span>
+                            </div>
+                        </div>
+                        <h3 class="h5 fw-bold mb-1 hover-primary cursor-pointer transition-colors">Garden Picnic Hamper</h3>
+                        <p class="text-muted fw-bold">$65.00</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Love Letters (Long-form) -->
+        <section class="py-5 bg-white border-top border-bottom position-relative overflow-hidden">
+            <div class="position-absolute top-0 start-50 translate-middle-x mt-5 z-0" style="opacity: 0.05;">
+                <span class="material-symbols-outlined" style="font-size: 200px; font-variation-settings: 'FILL' 1;">format_quote</span>
+            </div>
+            
+            <div class="container py-md-5 position-relative z-1">
+                <div class="text-center mx-auto" style="max-width: 800px;" data-aos="zoom-in">
+                    <!-- Premium Badge -->
+                    <div class="mb-4">
+                        <span class="d-inline-flex align-items-center gap-2 rounded-pill px-3 py-2 shadow-sm" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border: 1px solid rgba(223, 177, 98, 0.3);">
+                            <span class="rounded-circle d-flex align-items-center justify-content-center" style="width: 24px; height: 24px; background: linear-gradient(45deg, #dfb162, #c18a39); color: #fff;">
+                                <span class="material-symbols-outlined" style="font-size: 14px;">mail</span>
+                            </span>
+                            <span class="fw-bold pe-2" style="color: #064e3b; letter-spacing: 2px; font-size: 0.75rem; text-transform: uppercase;">In Depth</span>
+                        </span>
+                    </div>
+                    <h2 class="display-6 fw-bold mb-5" style="font-family: serif;">Love Letters</h2>
+                    
+                    <div class="bg-light p-4 p-md-5 rounded-4 handcrafted-shadow text-start">
+                        <p class="lead fst-italic lh-lg mb-5 text-dark">
+                            "I have ordered from many online boutiques, but Stackly stands in a league of its own. It's not just about the products—which are exquisite—but the feeling you get when you receive the package. The handwritten note, the delicate wrapping, the intentionality behind every item. I sent the 'New Beginnings' box to my best friend after her big move, and she cried when she opened it. Thank you for helping me be present for her, even from 3,000 miles away."
+                        </p>
+                        <hr class="border-secondary border-opacity-25 mb-4"/>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="h5 fw-bold text-primary-custom mb-0">Jessica Thorne</p>
+                            <p class="small text-muted mb-0 fw-bold text-uppercase tracking-wider">March 2026</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Video Testimonials -->
+        <section class="py-5">
+            <div class="container py-md-4">
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <!-- Premium Badge -->
+                    <div class="mb-4">
+                        <span class="d-inline-flex align-items-center gap-2 rounded-pill px-3 py-2 shadow-sm" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border: 1px solid rgba(223, 177, 98, 0.3);">
+                            <span class="rounded-circle d-flex align-items-center justify-content-center" style="width: 24px; height: 24px; background: linear-gradient(45deg, #dfb162, #c18a39); color: #fff;">
+                                <span class="material-symbols-outlined" style="font-size: 14px;">play_circle</span>
+                            </span>
+                            <span class="fw-bold pe-2" style="color: #064e3b; letter-spacing: 2px; font-size: 0.75rem; text-transform: uppercase;">Watch</span>
+                        </span>
+                    </div>
+                    <h2 class="display-6 fw-bold mb-2" style="font-family: serif;">Hear Their Joy</h2>
+                    <p class="text-muted lead fw-light">Stories told through voices and smiles</p>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-12 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="position-relative bg-dark rounded-4 overflow-hidden group handcrafted-shadow cursor-pointer aspect-video">
+                            <img class="w-100 h-100 object-fit-cover transition-lift opacity-75" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGtkTWWsIAouPi-g7kkiGDi1pZK3C7vF5twMfdcNaEQqJKsXCaTqpqsczAPNGPpRjp4Y5tnGzB9dBpAA7h2EZh20lmit9p9QZx-Dv-QMqhtg3CAkEqFhn6UT28G-M-YPmUdMhDq9B1ONmn-i1ls3kMIlLNMIHTufVJxL-ZUjqWG5prh24zbZNmotgAPsvHWWZRlPRwtQwLd7Jv80wXxu0iN46rJ1aIypmIyATHq1pJGuM-oKyAQpkQ" alt="Video thumbnail 1"/>
+                            <div class="position-absolute inset-0 d-flex align-items-center justify-content-center pe-none">
+                                <div class="bg-white rounded-circle d-flex align-items-center justify-content-center shadow-lg transition-transform" style="width: 70px; height: 70px;">
+                                    <span class="material-symbols-outlined text-primary-custom fs-1" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                                </div>
+                            </div>
+                            <div class="position-absolute bottom-0 start-0 m-4 bg-white bg-opacity-75 backdrop-blur-sm px-3 py-2 rounded-3">
+                                <p class="fw-bold mb-0 text-dark small">Unboxing the 'Golden Hour' Set</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="position-relative bg-dark rounded-4 overflow-hidden group handcrafted-shadow cursor-pointer aspect-video">
+                            <img class="w-100 h-100 object-fit-cover transition-lift opacity-75" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiXGQ6aM6jp7P7jIuS6qkJGRqh60coZxLgwsPZcGlYSLbdzFRdH6ITjJcIOGl0Ckg4W9f4AWm5JMqchMEsJQs2e5LRTQ5I6Ld2Ut9kagFlP19A1V7z2cQahkS8ZOuKe3ep4okW5sIgn1ZB5XiKlIAnxf-raSqcc0V8o_MRVjRQ2P0Nh-SVnesDjTh91A_mN0Q8KNxyViwbZO4hQQomyn_6-hvLKLZv9aV3cDmPL64ms0rjfNyFSUCG" alt="Video thumbnail 2"/>
+                            <div class="position-absolute inset-0 d-flex align-items-center justify-content-center pe-none">
+                                <div class="bg-white rounded-circle d-flex align-items-center justify-content-center shadow-lg transition-transform" style="width: 70px; height: 70px;">
+                                    <span class="material-symbols-outlined text-primary-custom fs-1" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                                </div>
+                            </div>
+                            <div class="position-absolute bottom-0 start-0 m-4 bg-white bg-opacity-75 backdrop-blur-sm px-3 py-2 rounded-3">
+                                <p class="fw-bold mb-0 text-dark small">Celebrating 10 Years Together</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Share Your Story CTA -->
+        <section class="py-5 position-relative text-white" id="share-story" style="background-color: #064e3b;">
+            <!-- Dark Premium Badge Background Overlay -->
+            <div class="position-absolute w-100 h-100 top-0 start-0 z-0" style="background: linear-gradient(135deg, rgba(6,78,59,1) 0%, rgba(10,108,83,1) 100%);"></div>
+            
+            <div class="container py-5 text-center position-relative z-1" data-aos="fade-up">
+                <!-- Premium Badge -->
+                <div class="mb-4">
+                    <span class="d-inline-flex align-items-center gap-2 rounded-pill px-3 py-2 shadow-sm" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); border: 1px solid rgba(223, 177, 98, 0.4);">
+                        <span class="rounded-circle d-flex align-items-center justify-content-center" style="width: 24px; height: 24px; background: linear-gradient(45deg, #dfb162, #c18a39); color: #064e3b;">
+                            <span class="material-symbols-outlined" style="font-size: 14px;">campaign</span>
+                        </span>
+                        <span class="fw-bold pe-2" style="color: #dfb162; letter-spacing: 2px; font-size: 0.75rem; text-transform: uppercase;">Join In</span>
+                    </span>
+                </div>
+                <h2 class="display-5 fw-bold mb-4" style="font-family: serif;">Become Part of Our Story</h2>
+                <p class="lead opacity-75 mx-auto mb-5 fw-light" style="max-width: 700px; line-height: 1.8;">
+                    Did we help you make a memory? We’d love to hear about it. Share your unboxing moments, the smiles we sparked, and your honest feedback.
+                </p>
+                <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-3">
+                    <button class="btn text-dark px-5 py-3 fw-bold rounded-pill shadow-lg transition-lift w-100 w-sm-auto" style="background: linear-gradient(45deg, #dfb162, #c18a39); border: none;">Write a Review</button>
+                    <button class="btn btn-outline-light px-5 py-3 fw-bold rounded-pill transition-lift d-flex justify-content-center align-items-center gap-2 w-100 w-sm-auto" style="border-width: 2px;">
+                        <span class="material-symbols-outlined fs-5">photo_camera</span>
+                        Upload a Photo
+                    </button>
+                </div>
+                <p class="mt-5 small text-white-50 mb-0">By sharing, you agree to our Terms of Service. Thank you for your support!</p>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Bootstrap 5.3.3 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmxc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Main JS -->
+    <script src="js/main.js"></script>
+
+</body>
+</html>
