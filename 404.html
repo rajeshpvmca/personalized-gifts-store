@@ -78,6 +78,40 @@
             color: #073b2c;
         }
 
+        /* Dancing Background Icons */
+        .bg-icon-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .bg-icon {
+            position: absolute;
+            color: #c18a39; /* Gold */
+            opacity: 0.15;
+            animation: floatDance 6s ease-in-out infinite;
+        }
+
+        @keyframes floatDance {
+            0% { transform: translateY(0) rotate(0deg) scale(1); }
+            33% { transform: translateY(-25px) rotate(15deg) scale(1.1); }
+            66% { transform: translateY(10px) rotate(-10deg) scale(0.95); }
+            100% { transform: translateY(0) rotate(0deg) scale(1); }
+        }
+
+        /* Specific positions and animation variations */
+        .icon-1 { top: 15%; left: 10%; font-size: 4rem; animation-delay: 0s; animation-duration: 7s; }
+        .icon-2 { top: 60%; left: 5%; font-size: 5rem; animation-delay: 1.5s; animation-duration: 8s; color: #064e3b; /* Green */ }
+        .icon-3 { top: 20%; right: 15%; font-size: 3.5rem; animation-delay: 3s; animation-duration: 6s; }
+        .icon-4 { top: 70%; right: 10%; font-size: 4.5rem; animation-delay: 0.5s; animation-duration: 9s; color: #064e3b; }
+        .icon-5 { top: 40%; left: 80%; font-size: 3rem; animation-delay: 2s; animation-duration: 7.5s; }
+        .icon-6 { top: 85%; left: 40%; font-size: 4rem; animation-delay: 4s; animation-duration: 8.5s; color: #064e3b; }
+
         /* Mobile specific adjustments to ensure it works well down to 320px */
         @media (max-width: 450px) {
             .error-card {
@@ -93,12 +127,31 @@
                 padding-top: 1rem !important;
                 padding-bottom: 1rem !important;
             }
+            
+            /* Background icon mobile tweaks */
+            .bg-icon { opacity: 0.08; } /* Lower opacity on mobile */
+            .icon-1 { top: 5%; left: 5%; font-size: 3rem; }
+            .icon-2 { top: 75%; left: -5%; font-size: 3.5rem; }
+            .icon-3 { top: 8%; right: 5%; font-size: 2.5rem; }
+            .icon-4 { top: 80%; right: -5%; font-size: 4rem; }
+            .icon-5 { display: none; } /* Hide extra icons to avoid clutter */
+            .icon-6 { display: none; }
         }
     </style>
 </head>
-<body class="text-dark font-body-md d-flex flex-column min-vh-100 align-items-center justify-content-center p-3 p-md-4">
+<body class="text-dark font-body-md d-flex flex-column min-vh-100 align-items-center justify-content-center p-3 p-md-4 position-relative overflow-hidden">
 
-    <main class="w-100" style="max-width: 440px;">
+    <!-- Dancing Background Icons -->
+    <div class="bg-icon-container">
+        <span class="material-symbols-outlined bg-icon icon-1">redeem</span> <!-- Gift -->
+        <span class="material-symbols-outlined bg-icon icon-2">celebration</span> <!-- Party/Cheers -->
+        <span class="material-symbols-outlined bg-icon icon-3">loyalty</span> <!-- Tag with Heart -->
+        <span class="material-symbols-outlined bg-icon icon-4">stars</span> <!-- Star -->
+        <span class="material-symbols-outlined bg-icon icon-5">favorite</span> <!-- Heart -->
+        <span class="material-symbols-outlined bg-icon icon-6">volunteer_activism</span> <!-- Giving Hand -->
+    </div>
+
+    <main class="w-100 position-relative z-1" style="max-width: 440px;">
         <div class="error-card p-5 text-center" data-aos="zoom-in" data-aos-duration="800">
             <div class="card-content">
                 <!-- Icon -->
@@ -134,13 +187,7 @@
                 </div>
             </div>
         </div>
-        
-        <!-- Subtle Brand Text outside card -->
-        <div class="text-center mt-5" data-aos="fade-in" data-aos-delay="800">
-            <p style="font-size: 1.05rem; color: #6b7280; font-family: var(--font-heading);">
-                &copy; Stackly Handcrafted Gifting
-            </p>
-        </div>
+    
     </main>
 
     <!-- Bootstrap 5.3.3 JS Bundle -->

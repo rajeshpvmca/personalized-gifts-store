@@ -84,20 +84,20 @@
                             </span>
                         </div>
                         <h2 class="h3 fw-bold text-primary-custom mb-4 pb-2" style="font-family: serif;">Send us a Message</h2>
-                        <form class="contact-form">
+                        <form class="contact-form" action="404.html">
                             <div class="row g-4 mb-4">
                                 <div class="col-12 col-md-6">
                                     <label class="form-label small fw-bold text-muted">Full Name</label>
-                                    <input class="form-control form-control-lg bg-light border-0" placeholder="Julianne Smith" type="text"/>
+                                    <input class="form-control form-control-lg bg-light border-0" placeholder="Julianne Smith" type="text" required/>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <label class="form-label small fw-bold text-muted">Email Address</label>
-                                    <input class="form-control form-control-lg bg-light border-0" placeholder="hello@curation.com" type="email"/>
+                                    <input class="form-control form-control-lg bg-light border-0" placeholder="hello@curation.com" type="email" required/>
                                 </div>
                             </div>
                             <div class="mb-4">
                                 <label class="form-label small fw-bold text-muted">Subject</label>
-                                <select class="form-select form-select-lg bg-light border-0">
+                                <select class="form-select form-select-lg bg-light border-0" required>
                                     <option>General Inquiry</option>
                                     <option>Order Support</option>
                                     <option>Corporate Gifting</option>
@@ -106,9 +106,9 @@
                             </div>
                             <div class="mb-4">
                                 <label class="form-label small fw-bold text-muted">Message</label>
-                                <textarea class="form-control bg-light border-0" placeholder="How can we help you today?" rows="5"></textarea>
+                                <textarea class="form-control bg-light border-0" placeholder="How can we help you today?" rows="5" required></textarea>
                             </div>
-                            <button onclick="window.top.location.href='404.html'" class="btn btn-primary-custom px-5 py-3 fw-bold rounded-pill shadow-sm transition-lift w-100 w-sm-auto" type="submit">
+                            <button class="btn btn-primary-custom px-5 py-3 fw-bold rounded-pill shadow-sm transition-lift w-100 w-sm-auto" type="submit">
                                 Send Message
                             </button>
                         </form>
