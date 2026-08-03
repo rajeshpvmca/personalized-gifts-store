@@ -19,13 +19,33 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => console.error('Error loading footer:', error));
 
-    // Initialize AOS
-    if (typeof AOS !== 'undefined') {
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100
-        });
+    // Preloader Logic
+    const preloader = document.getElementById('global-preloader');
+    if (preloader) {
+        setTimeout(() => {
+            preloader.classList.add('preloader-fade-out');
+            
+            // Initialize AOS only after preloader starts hiding
+            setTimeout(() => {
+                if (typeof AOS !== 'undefined') {
+                    AOS.init({
+                        duration: 1000,
+                        once: true,
+                        offset: 100
+                    });
+                }
+            }, 100); // Small delay to let the fade out start nicely before animating elements
+            
+        }, 2000); // 2 second preloading
+    } else {
+        // Fallback if no preloader is present on page
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                duration: 1000,
+                once: true,
+                offset: 100
+            });
+        }
     }
 
     function initHeaderScroll() {
