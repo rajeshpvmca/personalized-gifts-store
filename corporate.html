@@ -62,10 +62,10 @@
                         
                         <!-- Call to Action Buttons -->
                         <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-3 mt-4">
-                            <a href="#inquiry" class="btn rounded-pill px-5 py-3 d-inline-flex align-items-center justify-content-center gap-2 fw-bold transition-lift w-100 w-sm-auto" style="background: linear-gradient(45deg, #dfb162, #c18a39); color: #064e3b; border: none;">
+                            <a href="404.html" class="btn rounded-pill px-5 py-3 d-inline-flex align-items-center justify-content-center gap-2 fw-bold transition-lift w-100 w-sm-auto" style="background: linear-gradient(45deg, #dfb162, #c18a39); color: #064e3b; border: none;">
                                 Start Your Project
                             </a>
-                            <a href="#catalog" class="btn btn-outline-light rounded-pill px-5 py-3 d-inline-flex align-items-center justify-content-center gap-2 fw-medium transition-lift w-100 w-sm-auto" style="border-width: 2px;">
+                            <a href="404.html" class="btn btn-outline-light rounded-pill px-5 py-3 d-inline-flex align-items-center justify-content-center gap-2 fw-medium transition-lift w-100 w-sm-auto" style="border-width: 2px;">
                                 View 2026 Catalog
                             </a>
                         </div>
@@ -126,7 +126,7 @@
 
         <!-- 3. Bulk Personalization & Branding -->
         <section class="py-5 overflow-hidden">
-            <div class="container py-md-5">
+            <div class="container">
                 <div class="row g-5 align-items-center">
                     <div class="col-12 col-lg-6" data-aos="fade-right">
                         <!-- Premium Badge -->
@@ -171,7 +171,7 @@
 
         <!-- 4. Gifting Categories (Asymmetric Layout) -->
         <section class="py-5 bg-white border-top border-bottom">
-            <div class="container py-md-5">
+            <div class="container">
                 <div class="text-center mx-auto mb-5" style="max-width: 800px;" data-aos="fade-up">
                     <!-- Premium Badge -->
                     <div class="mb-4">
@@ -283,7 +283,7 @@
 
         <!-- 6. Corporate Catalog Download -->
         <section class="py-5 bg-primary-custom text-white" id="catalog">
-            <div class="container py-md-5">
+            <div class="container">
                 <div class="bg-white bg-opacity-10 backdrop-blur-md rounded-4 p-4 p-md-5 border border-white border-opacity-25" data-aos="fade-up">
                     <div class="row align-items-center g-5">
                         <div class="col-12 col-md-7">
@@ -298,9 +298,9 @@
                             </div>
                             <h2 class="display-5 fw-bold mb-4" style="font-family: serif;">Explore the 2026 Corporate Lookbook</h2>
                             <p class="lead opacity-75 mb-5">Get inspired by our latest collections, branding techniques, and fulfillment capabilities in our comprehensive 60-page digital catalog.</p>
-                            <form class="d-flex flex-column flex-sm-row gap-3">
-                                <input class="form-control form-control-lg bg-white bg-opacity-10 border-white border-opacity-25 text-white placeholder-white w-100" placeholder="Work Email" type="email" style="color: white !important;"/>
-                                <button onclick="window.top.location.href='404.html'" class="btn text-dark px-4 py-3 fw-bold text-nowrap transition-lift w-100 w-sm-auto rounded-3" type="submit" style="background: linear-gradient(45deg, #dfb162, #c18a39); border: none;">Download PDF</button>
+                            <form action="404.html" class="d-flex flex-column flex-sm-row gap-3">
+                                <input class="form-control form-control-lg bg-white bg-opacity-10 border-white border-opacity-25 text-white placeholder-white w-100" placeholder="Work Email" type="email" style="color: white !important;" required/>
+                                <button class="btn text-dark px-4 py-3 fw-bold text-nowrap transition-lift w-100 w-sm-auto rounded-3" type="submit" style="background: linear-gradient(45deg, #dfb162, #c18a39); border: none;">Download PDF</button>
                             </form>
                         </div>
                         <div class="col-12 col-md-5 d-none d-md-block text-center position-relative">
@@ -320,7 +320,7 @@
 
         <!-- 7. Custom Inquiry Form -->
         <section class="py-5 bg-light" id="inquiry">
-            <div class="container py-md-5">
+            <div class="container">
                 <div class="row g-5">
                     <div class="col-12 col-lg-5" data-aos="fade-right">
                         <!-- Premium Badge -->
@@ -342,7 +342,7 @@
                                 </div>
                                 <div>
                                     <p class="fw-bold mb-1">Direct Sales Line</p>
-                                    <p class="text-muted mb-0">+1 (888) 555-CURATE</p>
+                                    <p class="text-muted mb-0">+91 9876543210</p>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center gap-4">
@@ -359,15 +359,15 @@
                     
                     <div class="col-12 col-lg-7" data-aos="fade-left">
                         <div class="bg-white p-4 p-md-5 rounded-4 shadow-sm border border-secondary border-opacity-10">
-                            <form>
+                            <form action="404.html">
                                 <div class="row g-4 mb-4">
                                     <div class="col-12 col-md-6">
                                         <label class="form-label small fw-bold text-muted">Full Name</label>
-                                        <input class="form-control form-control-lg bg-light border-0 focus-ring-custom" type="text"/>
+                                        <input class="form-control form-control-lg bg-light border-0 focus-ring-custom" type="text" required/>
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <label class="form-label small fw-bold text-muted">Company Name</label>
-                                        <input class="form-control form-control-lg bg-light border-0 focus-ring-custom" type="text"/>
+                                        <input class="form-control form-control-lg bg-light border-0 focus-ring-custom" type="text" required/>
                                     </div>
                                 </div>
                                 <div class="row g-4 mb-4">
@@ -391,9 +391,9 @@
                                 </div>
                                 <div class="mb-5">
                                     <label class="form-label small fw-bold text-muted">Project Brief</label>
-                                    <textarea class="form-control bg-light border-0 focus-ring-custom" placeholder="Tell us about the occasion..." rows="4"></textarea>
+                                    <textarea class="form-control bg-light border-0 focus-ring-custom" placeholder="Tell us about the occasion..." rows="4" required></textarea>
                                 </div>
-                                <button onclick="window.top.location.href='404.html'" class="btn btn-primary-custom w-100 py-3 fw-bold rounded-3 shadow-sm transition-lift" type="submit">Request My Proposal</button>
+                                <button class="btn btn-primary-custom w-100 py-3 fw-bold rounded-3 shadow-sm transition-lift" type="submit">Request My Proposal</button>
                             </form>
                         </div>
                     </div>
